@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>~/maker.portfolio</title>
+
+  <!-- Google Fonts
+       JetBrains Mono → corps de texte, nav, labels (style éditeur de code)
+       Syne           → titres (display, expressif) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,300&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Feuille de styles principale -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+  <!-- ═══════════════════════════════════════
+       NAVIGATION
+       Fixée en haut. Transparente sur le hero,
+       la classe .scrolled est ajoutée par JS
+       dès que l'utilisateur commence à scroller.
+       Les séparateurs // sont purement décoratifs.
+       ═══════════════════════════════════════ -->
+  <nav id="navbar">
+
+    <!-- Logo / identité -->
+    <div class="nav-brand"><span>~/</span>alex.dev</div>
+
+    <!-- Liens principaux avec séparateurs // -->
+    <ul class="nav-links">
+      <li><span class="nav-sep">//</span></li>
+      <li><a href="#hero">Home</a></li>
+      <li><span class="nav-sep">//</span></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><span class="nav-sep">//</span></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><span class="nav-sep">//</span></li>
+      <li><a href="#process">parcours</a></li>
+      <li><span class="nav-sep">//</span></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><span class="nav-sep">//</span></li>
+    </ul>
+
+    <!-- Indicateur de statut (point vert animé) -->
+    <div class="nav-status">
+      <div class="status-dot"></div>
+      student · making things
+    </div>
+
+  </nav>
+
+
+  <!-- ═══════════════════════════════════════
+       HERO
+       Section plein écran (100vh).
+       - .hero-img : div vide qui reçoit le background-image via JS
+         (permet de détecter le chargement et de lancer l'animation)
+       - .hero-overlay : dégradé sombre du bas pour la lisibilité
+       - .hero-tint : halo violet en bas à gauche pour l'ambiance
+       ═══════════════════════════════════════ -->
+  <section id="hero">
+
+    <!-- Image de fond (URL + animation injectées par JS) -->
+    <div class="hero-img" id="heroImg"></div>
+
+    <!-- Dégradé opacité pour lire le texte -->
+    <div class="hero-overlay"></div>
+
+    <!-- Tinte de couleur d'ambiance -->
+    <div class="hero-tint"></div>
+
+    <!-- Contenu textuel — positionné en bas à gauche -->
+    <div class="hero-content">
+      <div class="hero-eyebrow">currently studying + building</div>
+      <h1>I build things<br>that exist.</h1>
+      <div class="hero-cta">
+        <a href="#projects" class="btn-primary">view projects</a>
+        <a href="#gallery"  class="btn-ghost">see the work &rarr;</a>
+      </div>
+    </div>
+
+    <!-- Invitation visuelle à scroller -->
+    <div class="hero-scroll-hint">
+      <div class="scroll-line"></div>
+      scroll
+    </div>
+
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       GALLERY — SCROLL HORIZONTAL
+       Principe : le container fait 400vh de haut.
+       L'intérieur (.gallery-sticky) est en position
+       sticky → il reste à l'écran pendant le scroll.
+       JS lit la progression et déplace .gallery-track.
+
+       Pour ajouter une image :
+         1. Dupliquer un .gallery-panel
+         2. Changer le src de l'image
+         3. Mettre à jour le caption
+         4. Ajouter un .g-dot dans .gallery-dots
+         5. Augmenter height de .gallery-scroll-container (ex: 500vh pour 5 panels)
+         6. Mettre à jour la constante PANEL_COUNT dans main.js
+       ═══════════════════════════════════════ -->
+  <section id="gallery">
+
+    <!-- En-tête de section avec animation d'entrée -->
+    <div class="gallery-header reveal">
+      <div class="sec-label">gallery</div>
+      <div class="sec-title">Behind the build</div>
+    </div>
+
+    <!-- Zone de scroll — hauteur = nb panels × 100vh -->
+    <div class="gallery-scroll-container" id="galleryContainer">
+
+      <!-- Partie sticky — reste visible pendant tout le scroll -->
+      <div class="gallery-sticky" id="gallerySticky">
+
+        <!-- Track horizontal — contient tous les panels côte à côte -->
+        <div class="gallery-track" id="galleryTrack">
+
+          <!-- Panel 01 — Couleur cyan (c1) -->
+          <div class="gallery-panel active" data-index="0">
+            <!-- Remplacer src par ta propre photo -->
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1600&q=85"
+                 alt="gros plan sur un circuit imprimé" loading="lazy">
+            <div class="panel-caption">
+              <div class="panel-num c1">01 &middot; hardware</div>
+              <div class="panel-title">Traces &amp; Vias</div>
+              <div class="panel-sub">La phase PCB : schéma, routage, gerbers envoyés en Chine, 10 jours d&rsquo;attente.</div>
+            </div>
+          </div>
+
+          <!-- Panel 02 — Couleur violet (c2) -->
+          <div class="gallery-panel" data-index="1">
+            <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=1600&q=85"
+                 alt="imprimante 3D en action" loading="lazy">
+            <div class="panel-caption">
+              <div class="panel-num c2">02 &middot; fabrication</div>
+              <div class="panel-title">Layer by Layer</div>
+              <div class="panel-sub">Fusion 360 &rarr; slicer &rarr; 14 heures d&rsquo;impression. La magie du dépôt de filament.</div>
+            </div>
+          </div>
+
+          <!-- Panel 03 — Couleur vert (c3) -->
+          <div class="gallery-panel" data-index="2">
+            <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1600&q=85"
+                 alt="écran de code dans l'obscurité" loading="lazy">
+            <div class="panel-caption">
+              <div class="panel-num c3">03 &middot; firmware</div>
+              <div class="panel-title">2am Debug Session</div>
+              <div class="panel-sub">Un écran, un oscilloscope, du café froid et un bit qui ne passe pas.</div>
+            </div>
+          </div>
+
+          <!-- Panel 04 — Couleur ambre (c4) -->
+          <div class="gallery-panel" data-index="3">
+            <img src="https://images.unsplash.com/photo-1603732551681-2e91159b9dc2?w=1600&q=85"
+                 alt="établi de maker avec composants" loading="lazy">
+            <div class="panel-caption">
+              <div class="panel-num c4">04 &middot; atelier</div>
+              <div class="panel-title">The Bench</div>
+              <div class="panel-sub">Là où tout commence — et où les composants 0402 disparaissent à jamais.</div>
+            </div>
+          </div>
+
+        </div><!-- /.gallery-track -->
+      </div><!-- /.gallery-sticky -->
+    </div><!-- /.gallery-scroll-container -->
+
+    <!-- Points de navigation (un par panel, cliquables) -->
+    <div class="gallery-dots" id="galleryDots">
+      <div class="g-dot active" data-dot="0"></div>
+      <div class="g-dot"        data-dot="1"></div>
+      <div class="g-dot"        data-dot="2"></div>
+      <div class="g-dot"        data-dot="3"></div>
+    </div>
+
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       PROJECTS
+       Chaque .project-row porte une classe de
+       couleur (.p-cyan / .p-violet / .p-amber)
+       qui définit des tokens CSS locaux utilisés
+       par toute la carte (bordures, tags, specs…).
+
+       La classe .flip inverse photo/texte gauche-droite
+       pour alterner la mise en page.
+
+       Pour ajouter un projet :
+         1. Copier un .project-row complet
+         2. Changer la classe de couleur
+         3. Mettre à jour photo, nom, description, specs, tags
+       ═══════════════════════════════════════ -->
+  <section id="projects">
+    
+    <div id="projects_bg"></div>
+    <div class="sec-label">projects</div>
+    <div class="sec-title" style="margin-bottom: 3rem">Things I&rsquo;ve built</div>
+
+    <div class="cascade-wrapper">
+
+      <!-- ── Projet 01 — CYAN ── -->
+      <div class="project-row p-cyan reveal">
+        <div class="blur"></div>
+
+        <!-- Photo du projet — remplacer src par ta photo -->
+        <div class="proj-photo">
+          <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80"
+               alt="PCB OpenTherm" loading="lazy">
+          <div class="proj-photo-num">01 &middot; hardware</div>
+        </div>
+
+        <!-- Contenu texte -->
+        <div class="proj-content">
+          <div>
+            <div class="proj-header">
+              <div class="proj-name">OpenTherm Node</div>
+              <span class="proj-type">PCB</span>
+            </div>
+            <p class="proj-desc">
+              Custom PCB bridging an OpenTherm boiler to MQTT over WiFi.
+              Designed in KiCad, manufactured at JLCPCB. Firmware in C
+              with FreeRTOS &mdash; sub-500ms response time, running 24/7.
+            </p>
+            <!-- Specs techniques (ajouter/supprimer des .spec-item librement) -->
+            <div class="proj-specs">
+              <div class="spec-item"><strong>MCU</strong>ESP32-S3</div>
+              <div class="spec-item"><strong>Protocol</strong>OpenTherm v2.2</div>
+              <div class="spec-item"><strong>Stack</strong>FreeRTOS + MQTT</div>
+              <div class="spec-item"><strong>Latency</strong>&lt; 500 ms</div>
+              <div class="spec-item"><strong>Cost</strong>~&euro;18 / board</div>
+            </div>
+          </div>
+          <!-- Tags technos -->
+          <div class="proj-tags">
+            <span class="tag">KiCad</span>
+            <span class="tag">ESP32</span>
+            <span class="tag">FreeRTOS</span>
+            <span class="tag">MQTT</span>
+            <span class="tag">C</span>
+          </div>
+        </div>
+
+      </div><!-- /.project-row -->
+
+
+      <!-- ── Projet 02 — VIOLET (inversé) ── -->
+      <div class="project-row p-violet flip reveal">
+        <div class="blur"></div>
+
+        <div class="proj-photo">
+          <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&q=80"
+               alt="Imprimante 3D MicroScope Stage" loading="lazy">
+          <div class="proj-photo-num">02 &middot; mécatronique</div>
+        </div>
+
+        <div class="proj-content">
+          <div>
+            <div class="proj-header">
+              <div class="proj-name">MicroScope Stage</div>
+              <span class="proj-type">Mécatronique</span>
+            </div>
+            <p class="proj-desc">
+              Platine XYZ motorisée imprimée en 3D, pilotée par STM32 via UART.
+              Interface Python sur le PC hôte. Répétabilité &plusmn;5 &micro;m
+              &mdash; BOM complète sous &euro;60.
+            </p>
+            <div class="proj-specs">
+              <div class="spec-item"><strong>MCU</strong>STM32F103</div>
+              <div class="spec-item"><strong>Impression</strong>PLA 0.1 mm</div>
+              <div class="spec-item"><strong>Répétabilité</strong>&plusmn;5 &micro;m</div>
+              <div class="spec-item"><strong>Interface</strong>Python / UART</div>
+              <div class="spec-item"><strong>BOM</strong>&lt; &euro;60</div>
+            </div>
+          </div>
+          <div class="proj-tags">
+            <span class="tag">STM32</span>
+            <span class="tag">3D Print</span>
+            <span class="tag">Python</span>
+            <span class="tag">Stepper</span>
+          </div>
+        </div>
+
+      </div><!-- /.project-row -->
+
+
+      <!-- ── Projet 03 — AMBRE ── -->
+      <div class="project-row p-amber reveal">
+        <div class="blur"></div>
+
+        <div class="proj-photo">
+          <img src="https://images.unsplash.com/photo-1555099962-4199c345e5dd?w=800&q=80"
+               alt="Terminal Devlog CLI" loading="lazy">
+          <div class="proj-photo-num">03 &middot; software</div>
+        </div>
+
+        <div class="proj-content">
+            
+          <div>
+            <div class="proj-header">
+              <div class="proj-name">Devlog CLI</div>
+              <span class="proj-type">CLI / Rust</span>
+            </div>
+            <p class="proj-desc">
+              Outil terminal pour journaliser les notes d&rsquo;ingénierie.
+              Markdown-based, Git-tracked, full-text searchable.
+              Construit en Rust &mdash; parce que perdre ses breadcrumbs
+              entre deux sessions de debug, c&rsquo;est fini.
+            </p>
+            <div class="proj-specs">
+              <div class="spec-item"><strong>Langage</strong>Rust 1.76</div>
+              <div class="spec-item"><strong>Format</strong>Markdown + YAML</div>
+              <div class="spec-item"><strong>Sync</strong>Git auto-commit</div>
+              <div class="spec-item"><strong>Binary</strong>~1.2 MB</div>
+            </div>
+          </div>
+          <div class="proj-tags">
+            <span class="tag">Rust</span>
+            <span class="tag">CLI</span>
+            <span class="tag">Git</span>
+            <span class="tag">Markdown</span>
+          </div>
+        </div>
+
+      </div><!-- /.project-row -->
+
+
+    </div><!-- /.cascade-wrapper -->
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       PROCESS — TIMELINE
+       4 étapes avec un point coloré différent
+       par étape, reliées par une ligne verticale.
+       ═══════════════════════════════════════ -->
+  <section id="process">
+
+    <div class="sec-label">parcours</div>
+    <div class="sec-title" style="margin-bottom: 3rem">my parcours</div>
+
+    <div class="timeline reveal">
+
+      <!-- Étape 1 — point violet (.v) -->
+      <div class="tl-item">
+        <div class="tl-dot v"></div>
+        <div class="tl-content">
+          <div class="tl-phase">01 &middot; first step</div>
+          <div class="tl-title">Lycée astier Polyvalent</div>
+          <p class="tl-desc">i feel like nothing was done but in reality i've learned the basic of what is my present and what would be my future by that i mean the subject (vector ,irrational number ,differential equation and most importantly the youtubers that i watched it is thanks of them that i now know that i want to do graphic programming ) </p>
+        </div>
+      </div>
+
+      <!-- Étape 2 — point bleu (.b) -->
+      <div class="tl-item">
+        <div class="tl-dot b"></div>
+        <div class="tl-content">
+          <div class="tl-phase">02 &middot; the discovery</div>
+          <div class="tl-title">BUT informatique de grenoble 1/2 année</div>
+          <p class="tl-desc">"the struggle is real " pretty much sum up how i felt during those 2year it was extra-mega hard because i was an averge / below averge student 
+            it is very classic but i did encounter amazing peapol in their personality , skils and interest also during those year i were less guided than before and liked the subject more so i enjoyed this aspect as my ultimate goal
+            is not really to become an graphic programmer but one that can also do evrythings else chemestry / electronic / history etc... somone that know and know how to do more than an engenner and for that as pretencious as it is being a graphic programmer is a good start
+          </p>
+        </div>
+      </div>
+
+      <!-- Étape 3 — point cyan (.c) -->
+      <div class="tl-item">
+        <div class="tl-dot c"></div>
+        <div class="tl-content">
+          <div class="tl-phase">03 &middot; now</div>
+          <div class="tl-title">BUT 3 informatique le puy</div>
+          <p class="tl-desc">not done yet but i know from a member of the iut of grenoble that it will be easier so i will have more time for side projects also i'm currently searching 
+            a work-study
+          </p>
+        </div>
+      </div>
+
+      <!-- Étape 4 — point vert (.g) -->
+      <div class="tl-item">
+        <div class="tl-dot g"></div>
+        <div class="tl-content">
+          <div class="tl-phase">04 &middot;  my future </div>
+          <div class="tl-title">Ecole d'ingénieur ? master : self-learning ;</div>
+          <p class="tl-desc">(it's not that hard i promise gl ;) ) f's: t"xqz" q": sf/ lc xoz:lù lk t"xq fp x doxm"fnr: moldoxjj:o xk/ "lk:pqùv f /lk'q q"fkh f tfùù d:q x gly xcq:o jv jxpq:o lo :kd:k::ofkd /:do:: xk/ f /lk'q txkq jv jlj ql cfk/ q"fp xùpl f'j o:xùùv :ufq:/ ql d:q zùlp:o ql q": jxpq:o / :zlù: /p:ùc-ù:xokfkd (t"fz" f xùo:x/v /l ) y:zxrp: f tfùù cfkxùùv ù:xok xùjlpq :uùrpfsùv t"xq f txkq
+          </p>
+        </div>
+      </div>
+
+    </div><!-- /.timeline -->
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       CONTACT
+       ═══════════════════════════════════════ -->
+  <section id="contact">
+
+    <div class="contact-inner reveal">
+      <div class="sec-label" style="justify-content: center">contact</div>
+      <div class="sec-title" style="margin-bottom: 0">Let&rsquo;s make something.</div>
+
+      <p class="contact-address">
+        Open to collaboration, questions, and bug reports.<br>
+        <a href="mailto:alex@maker.dev">alex@maker.dev</a>
+      </p>
+
+      <!-- Liens réseaux sociaux — remplacer href="#" par les vraies URLs -->
+      <div class="social-row">
+        <a href="#">GitHub</a>
+        <a href="#">LinkedIn</a>
+        <a href="#">Hackaday.io</a>
+        <a href="#">Twitter / X</a>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       FOOTER
+       La courbe concave est un SVG positionné
+       en absolu juste au-dessus du footer.
+       Le path "M0,0 L1440,0 L1440,80 Q720,0 0,80"
+       trace une parabole concave vers le haut.
+       ═══════════════════════════════════════ -->
+  <footer>
+
+    <!-- SVG de la courbe concave (fond = couleur du footer) -->
+    <div class="footer-concave">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,0 L1440,0 L1440,80 Q720,0 0,80 Z" fill="#110a30"/>
+      </svg>
+    </div>
+
+    <div class="footer-inner">
+      <div class="footer-brand"><span>~/</span>alex.dev &middot; portfolio</div>
+      <ul class="footer-links">
+        <li><a href="#hero">top</a></li>
+        <li><a href="#projects">projects</a></li>
+        <li><a href="#contact">contact</a></li>
+      </ul>
+      <div class="footer-copy">built with curiosity &copy; 2025</div>
+    </div>
+
+  </footer>
+
+
+  <!-- Script principal — chargé en fin de body pour ne pas bloquer le rendu -->
+  <script src="main.js"></script>
+
+</body>
+</html>
