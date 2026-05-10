@@ -373,81 +373,76 @@ h1 {
   margin-bottom: 3rem;
 }
 
-/* Container de défilement — la hauteur crée l'espace de scroll */
 .gallery-scroll-container {
-  position: relative;
-  height: 400vh;  /* 4 panels × 100vh */
-}
-
-/* Zone sticky — reste visible pendant les 400vh */
-.gallery-sticky {
-  position: sticky;
-  top: 0;
-  height: 100vh;
   display: flex;
-  align-items: center;
-  overflow: hidden;
+  flex-wrap: nowrap;   /* Force les images à rester sur une seule ligne */
+  width: max-content;  /* Magique : le conteneur prend la largeur exacte de toutes les images combinées */
 }
 
-/* Track horizontal contenant les 4 panels côte à côte */
-.gallery-track {
-  display: flex;
-  width: 400vw;   /* 4 × 100vw */
-  height: 100%;
-  will-change: transform;  /* hint GPU pour les transitions */
-}
-
-/* Panel individuel — 1 image plein écran */
-.gallery-panel {
-  width: 100vw;
-  height: 100%;
+.galery-element {
   position: relative;
-  flex-shrink: 0;
-  overflow: hidden;
+  /* 25vw permet d'en voir 4 entières, donc pour en cropper, 
+     on peut rester sur 30vw ou 40vw selon l'effet voulu */
+  width: 40vw; 
+  flex-shrink: 0; 
+  height: 50vh;          /* Définit une hauteur fixe ou auto selon tes images */
+  margin: 0 10px;        /* Petit espace entre les photos */
+  overflow: hidden;      /* Pour que l'image ne dépasse pas du cadre arrondi par ex */
 }
 
-/* Image inactive — désaturée et zoomée */
-.gallery-panel img {
-  width: 100%; height: 100%;
+.galery-element img {
+  width: 100%;
+  height: 100%;          /* Remis à 100% pour remplir le cadre */
   object-fit: cover;
-  filter: brightness(.7) saturate(.8);
-  transform: scale(1.08);
-  transition: filter .6s, transform .6s;
+  display: block;
 }
 
-/* Image active — couleurs normales, dézoom */
-.gallery-panel.active img {
-  filter: brightness(.9) saturate(1.1);
-  transform: scale(1);
+/* 1. L'enveloppe qui définit la zone de travail */
+.gallery-wrapper {
+  position: relative; /* C'est le nouveau référentiel pour les boutons */
+  width: 100%;
+  overflow: hidden;   /* On coupe le ruban d'images qui dépasse ici */
 }
 
-/* Overlay coloré unique par panel (nth-child) */
-.gallery-panel:nth-child(1)::after { background: linear-gradient(135deg, rgba(0,  180, 255, .18), rgba(5, 1, 18, .55) 70%); }
-.gallery-panel:nth-child(2)::after { background: linear-gradient(135deg, rgba(180, 75, 255, .18), rgba(5, 1, 18, .55) 70%); }
-.gallery-panel:nth-child(3)::after { background: linear-gradient(135deg, rgba(57,  255, 154, .12), rgba(5, 1, 18, .55) 70%); }
-.gallery-panel:nth-child(4)::after { background: linear-gradient(135deg, rgba(255, 179,  64, .15), rgba(5, 1, 18, .55) 70%); }
-.gallery-panel::after {
-  content: '';
-  position: absolute; inset: 0;
-  pointer-events: none;
+/* 2. Les contrôleurs (fixes sur les côtés) */
+.gallery-scroll.controller {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 20vw;
+  z-index: 10;        /* Passe par-dessus les images */
+  pointer-events: all; /* S'assure qu'on peut cliquer dessus */
+  cursor: pointer;
 }
+
+.gallery-scroll.controller.left {
+  left: 0;
+  background: linear-gradient( to left, transparent,hsl(from var(--dim) h s l ));
+  z-index: 50;
+  opacity: 0.5;
+}
+
+.gallery-scroll.controller.right {
+  right: 0;           /* On utilise right: 0 plutôt que left: 75% */
+    background: linear-gradient( to right, transparent,hsl(from var(--dim) h s l ));
+  z-index: 50;
+}
+
+
 
 /* Caption en bas de chaque panel — masquée par défaut */
 .panel-caption {
+  width: 100%;
+  height: 20%;
   position: absolute;
   bottom: 0; left: 0; right: 0;
-  padding: 4rem 4rem 3rem;
   background: linear-gradient(to top, rgba(5, 1, 18, .92) 0%, transparent 100%);
   z-index: 2;
   transform: translateY(12px);
-  opacity: 0;
+
   transition: opacity .5s, transform .5s;
 }
-/* Caption visible uniquement sur le panel actif */
-.gallery-panel.active .panel-caption {
-  opacity: 1;
-  transform: none;
-}
+
 
 /* Numéro de panel avec couleur par thème */
 .panel-num {
@@ -463,7 +458,7 @@ h1 {
 
 .panel-title {
   font-family: var(--display);
-  font-size: clamp(1.6rem, 3vw, 2.8rem);
+  font-size: clamp(0.2rem, 2vw, 1.2rem);
   font-weight: 800;
   color: #fff;
   letter-spacing: -.02em;
@@ -476,31 +471,6 @@ h1 {
   line-height: 1.8;
 }
 
-/* Points de navigation sous la gallery */
-.gallery-dots {
-  position: sticky;
-  bottom: 2.5rem;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  z-index: 10;
-  margin-top: -3rem;
-}
-.g-dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--dim);
-  transition: all .3s;
-  cursor: pointer;
-}
-/* Point actif — s'étire en pilule */
-.g-dot.active {
-  background: var(--neon-violet);
-  box-shadow: 0 0 10px var(--neon-violet);
-  width: 22px;
-  border-radius: 3px;
-}
-
 
 /* ─────────────────────────────────────────────
    7. PROJECTS
@@ -508,6 +478,9 @@ h1 {
    via les classes .p-cyan / .p-violet / .p-amber.
    ───────────────────────────────────────────── */
    #projects{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding-bottom: 10%;
     position: relative;
    }

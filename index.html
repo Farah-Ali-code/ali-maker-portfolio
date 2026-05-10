@@ -107,77 +107,55 @@
          6. Mettre à jour la constante PANEL_COUNT dans main.js
        ═══════════════════════════════════════ -->
   <section id="gallery">
-
-    <!-- En-tête de section avec animation d'entrée -->
     <div class="gallery-header reveal">
-      <div class="sec-label">gallery</div>
-      <div class="sec-title">Behind the build</div>
-    </div>
-
-    <!-- Zone de scroll — hauteur = nb panels × 100vh -->
-    <div class="gallery-scroll-container" id="galleryContainer">
-
-      <!-- Partie sticky — reste visible pendant tout le scroll -->
-      <div class="gallery-sticky" id="gallerySticky">
-
-        <!-- Track horizontal — contient tous les panels côte à côte -->
-        <div class="gallery-track" id="galleryTrack">
-
-          <!-- Panel 01 — Couleur cyan (c1) -->
-          <div class="gallery-panel active" data-index="0">
-            <!-- Remplacer src par ta propre photo -->
-            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1600&q=85"
-                 alt="gros plan sur un circuit imprimé" loading="lazy">
-            <div class="panel-caption">
-              <div class="panel-num c1">01 &middot; hardware</div>
-              <div class="panel-title">Traces &amp; Vias</div>
-              <div class="panel-sub">La phase PCB : schéma, routage, gerbers envoyés en Chine, 10 jours d&rsquo;attente.</div>
+        <div class="sec-label">gallery</div>
+        <div class="sec-title">Behind the build</div>
+      </div>
+    <div class="gallery-wrapper">
+      <!-- En-tête de section avec animation d'entrée -->
+      
+       <div class="gallery-scroll controller left"></div>
+        <div class="gallery-scroll controller right"></div>
+      <!-- Zone de scroll — hauteur = nb panels × 100vh -->
+      <div class="gallery-scroll-container" id="galleryContainer">
+       
+            <!-- Panel 01 — Couleur cyan (c1) -->
+            <div  class="galery-element" data-index="0">
+              <!-- Remplacer src par ta propre photo -->
+              <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1600&q=85"
+                  alt="gros plan sur un circuit imprimé" loading="lazy">
+              <div class="panel-caption">
+                <div class="panel-title">Traces &amp; Vias</div>
+              </div>
             </div>
-          </div>
 
-          <!-- Panel 02 — Couleur violet (c2) -->
-          <div class="gallery-panel" data-index="1">
-            <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=1600&q=85"
-                 alt="imprimante 3D en action" loading="lazy">
-            <div class="panel-caption">
-              <div class="panel-num c2">02 &middot; fabrication</div>
-              <div class="panel-title">Layer by Layer</div>
-              <div class="panel-sub">Fusion 360 &rarr; slicer &rarr; 14 heures d&rsquo;impression. La magie du dépôt de filament.</div>
+            <!-- Panel 02 — Couleur violet (c2) -->
+            <div  class="galery-element" data-index="1">
+              <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=1600&q=85"
+                  alt="imprimante 3D en action" loading="lazy">
+              <div class="panel-caption">
+                <div class="panel-title">Layer by Layer</div>
+              </div>
             </div>
-          </div>
 
-          <!-- Panel 03 — Couleur vert (c3) -->
-          <div class="gallery-panel" data-index="2">
-            <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1600&q=85"
-                 alt="écran de code dans l'obscurité" loading="lazy">
-            <div class="panel-caption">
-              <div class="panel-num c3">03 &middot; firmware</div>
-              <div class="panel-title">2am Debug Session</div>
-              <div class="panel-sub">Un écran, un oscilloscope, du café froid et un bit qui ne passe pas.</div>
+            <!-- Panel 03 — Couleur vert (c3) -->
+            <div class="galery-element" data-index="2">
+              <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1600&q=85"
+                  alt="écran de code dans l'obscurité" loading="lazy">
+              <div class="panel-caption">
+                <div class="panel-title">2am Debug Session</div>
+              </div>
             </div>
-          </div>
 
-          <!-- Panel 04 — Couleur ambre (c4) -->
-          <div class="gallery-panel" data-index="3">
-            <img src="https://images.unsplash.com/photo-1603732551681-2e91159b9dc2?w=1600&q=85"
-                 alt="établi de maker avec composants" loading="lazy">
-            <div class="panel-caption">
-              <div class="panel-num c4">04 &middot; atelier</div>
-              <div class="panel-title">The Bench</div>
-              <div class="panel-sub">Là où tout commence — et où les composants 0402 disparaissent à jamais.</div>
+            <!-- Panel 04 — Couleur ambre (c4) -->
+            <div class="galery-element" data-index="3">
+              <img src="https://images.unsplash.com/photo-1603732551681-2e91159b9dc2?w=1600&q=85"
+                  alt="établi de maker avec composants" loading="lazy">
+              <div class="panel-caption">
+                <div class="panel-title">The Bench</div>
+              </div>
             </div>
-          </div>
-
-        </div><!-- /.gallery-track -->
-      </div><!-- /.gallery-sticky -->
-    </div><!-- /.gallery-scroll-container -->
-
-    <!-- Points de navigation (un par panel, cliquables) -->
-    <div class="gallery-dots" id="galleryDots">
-      <div class="g-dot active" data-dot="0"></div>
-      <div class="g-dot"        data-dot="1"></div>
-      <div class="g-dot"        data-dot="2"></div>
-      <div class="g-dot"        data-dot="3"></div>
+      </div><!-- /.gallery-scroll-container -->
     </div>
 
   </section>
@@ -200,7 +178,8 @@
        ═══════════════════════════════════════ -->
   <section id="projects">
     
-    <div id="projects_bg"></div>
+    
+    <canvas id="projects_bg"></canvas>
     <div class="sec-label">projects</div>
     <div class="sec-title" style="margin-bottom: 3rem">Things I&rsquo;ve built</div>
 
