@@ -146,7 +146,7 @@ function scrollLoop() {
 // On lance le moteur
 scrollLoop();
 
-let baseOpacity = 0.75;
+let baseOpacity = 1;
 let speedFactor = 0.025;
 
 // --- 4. CONTROLEUR DROIT (Fait défiler vers la GAUCHE, donc X diminue) ---
@@ -159,7 +159,7 @@ controllerRight.addEventListener('mousemove', (event) => {
   // 0.02 est la vitesse de base, 0.15 est le boost maximal.
   scrollSpeed = -(0.03 + (percentage * speedFactor));
   //updater le gradient 
-  controllerRight.style.opacity = percentage + baseOpacity;
+  controllerRight.style.opacity = 1-percentage ;
 
 
 });
@@ -181,7 +181,7 @@ controllerLeft.addEventListener('mousemove', (event) => {
   scrollSpeed = 0.03 + (invertedPercentage * speedFactor);
 
   //updater le gradient 
-  controllerLeft.style.opacity = invertedPercentage + baseOpacity;
+  controllerLeft.style.opacity = percentage ;
 });
 
 controllerLeft.addEventListener('mouseleave', () => {
