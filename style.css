@@ -43,6 +43,8 @@
   /* Typographie */
   --mono:    'JetBrains Mono', monospace;  /* corps, nav, labels */
   --display: 'Syne', sans-serif;           /* titres */
+
+  
 }
 
 /* Reset minimal — normalise les marges et le box model */
@@ -666,14 +668,15 @@ background: linear-gradient(0deg, hsl(from var(--pc) h s l /0.2) 0%,  hsl(from v
 .timeline {
   display: flex;
   flex-direction: column;
-  max-width: 760px;
+  max-width: 60%;
+  margin-left: 12%;
   position: relative;
 }
 /* Ligne verticale continue derrière les points */
 .timeline::before {
   content: '';
   position: absolute;
-  top: 0; left: 14px; bottom: 0;
+  top: 0; left: 6.5px; bottom: 0;
   width: 1px;
   background: linear-gradient(to bottom, var(--neon-blue), var(--neon-violet), transparent);
 }
@@ -721,97 +724,125 @@ background: linear-gradient(0deg, hsl(from var(--pc) h s l /0.2) 0%,  hsl(from v
 
 
 /* ─────────────────────────────────────────────
-   9. CONTACT
-   ───────────────────────────────────────────── */
-#contact {
-  background: var(--void);
-  text-align: center;
-  padding: 6rem 3rem 0;
-}
-
-.contact-inner {
-  max-width: 600px;
-  margin: 0 auto;
-  padding-bottom: 6rem;
-}
-
-.contact-address {
-  font-size: .85rem;
-  letter-spacing: .05em;
-  color: var(--text-sub);
-  margin: 2rem 0;
-  line-height: 2;
-}
-.contact-address a {
-  color: var(--neon-violet);
-  text-decoration: none;
-  transition: text-shadow .2s;
-}
-.contact-address a:hover { text-shadow: 0 0 18px var(--neon-violet); }
-
-.social-row {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin-top: 2rem;
-}
-.social-row a {
-  font-size: .75rem;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--text-ghost);
-  text-decoration: none;
-  border-bottom: 1px solid var(--dim);
-  padding-bottom: 2px;
-  transition: all .2s;
-}
-.social-row a:hover { color: var(--neon-cyan); border-color: var(--neon-cyan); }
-
-
-/* ─────────────────────────────────────────────
    10. FOOTER
    La courbe concave en haut est un SVG inline
    dans le HTML, positionné en absolu juste
    au-dessus du footer.
    ───────────────────────────────────────────── */
-footer {
-  position: relative;
-  background: var(--surface);
-  padding: 3rem 3rem 2rem;
+
+
+.footer_bg {
+    position: relative;
+    background: linear-gradient(-180deg, var(--deep ) 0%, var(--dim) 320%);
 }
 
-/* Conteneur du SVG de la courbe concave */
-.footer-concave {
-  position: absolute;
-  top: -80px; left: 0; right: 0;
-  height: 80px;
-  overflow: hidden;
-}
-.footer-concave svg { width: 100%; height: 100%; display: block; }
-
-.footer-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1rem;
+.footer_arrondi {
+    position: static;
+    background: hsl(from var(--void) h s l );
+    height: 200px;
+    border-bottom-left-radius: 35%;
+    border-bottom-right-radius: 35%;
 }
 
-.footer-brand { font-size: .78rem; color: var(--text-ghost); letter-spacing: .06em; }
-.footer-brand span { color: var(--neon-violet); }
-
-.footer-copy { font-size: .68rem; color: var(--text-ghost); letter-spacing: .06em; }
-
-.footer-links { display: flex; gap: 1.5rem; list-style: none; }
-.footer-links a {
-  font-size: .7rem;
-  color: var(--text-ghost);
-  text-decoration: none;
-  letter-spacing: .08em;
-  transition: color .2s;
+#reseaux>div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    justify-content: space-evenly;
+    width: 95%;
+    padding: 2rem;
+    min-height: 300px;
 }
-.footer-links a:hover { color: var(--neon-blue); }
 
+#reseaux>div>div {
+    width: 10%;
+}
+
+.reseau {
+    width: 10%;
+    height: auto;
+    margin-left: 2%;
+    margin-right: 2%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.reseau>a {
+    height: auto;
+    margin-left: 2%;
+    margin-right: 2%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.reseau img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 0.5rem;
+}
+
+.reseau p {
+    margin: 0;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+#reseaux_2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    justify-content: space-evenly;
+    width: 100%;
+    min-height: 300px;
+
+
+    backdrop-filter: blur(2.1px);
+
+    -webkit-backdrop-filter: blur(2.1px);
+
+}
+
+.footer_bg_2>.social {
+    backdrop-filter: blur(2.1px);
+    background-color: transparent;
+    -webkit-backdrop-filter: blur(2.1px);
+}
+
+
+#reseaux_2>div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    justify-content: space-evenly;
+    width: 95%;
+    padding: 2rem;
+    min-height: 300px;
+}
+
+#reseaux_2>div>div {
+    width: 10%;
+}
+
+#reseaux_2>div>div>a>img {
+    filter: invert(100%);
+}
+
+#reseaux>div>div>a>img {
+    filter: invert(100%);
+}
+
+.social {
+    display: flex;
+    flex-direction: row;
+    background-color: var(--bleu-footer);
+}
+
+.lien {
+    text-decoration: dotted;
+    text-decoration-line: underline;
+}
 
 /* ─────────────────────────────────────────────
    11. ANIMATIONS & UTILITAIRES

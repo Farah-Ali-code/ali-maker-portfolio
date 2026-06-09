@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futuristic Data Interface</title>
+    <style>
+        /* --- Global Reset and Base Styling --- */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0a0d1b; /* Deep Space Blue/Black */
+            color: #e0e6ff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            /* 
+             * 1. THE ATMOSPHERE (GOD RAYS):
+             * Layering multiple, transparent, directional gradients to simulate light shafts.
+             */
+            background-image: 
+                /* Light Beam 1 (Top Left) */
+                linear-gradient(135deg, rgba(100, 149, 237, 0.1) 10%, transparent 70%),
+                /* Light Beam 2 (Bottom Right) */
+                linear-gradient(45deg, rgba(135, 206, 250, 0.08) 10%, transparent 60%);
+
+            /* 
+             * 2. THE GRID OVERLAY (Procedural Grid):
+             * Using repeating linear gradients to draw thin, repeating lines over the background.
+             */
+            background-size: 
+                40px 40px, /* Size for the vertical lines */
+                100px 40px; /* Size for the horizontal lines */
+            background-image: 
+                /* Vertical Grid Lines */
+                linear-gradient(to right, transparent 95%, rgba(100, 149, 237, 0.1) 100%),
+                /* Horizontal Grid Lines */
+                linear-gradient(to bottom, transparent 95%, rgba(100, 149, 237, 0.1) 100%);
+        }
+
+        /* --- Container Styling --- */
+        .container {
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: rgba(12, 13, 27, 0.85); /* Semi-transparent overlay to make content readable */
+            border: 1px solid rgba(100, 149, 237, 0.3); /* Subtle glow border */
+            box-shadow: 0 0 40px rgba(100, 149, 237, 0.2); /* Outer glow effect */
+            backdrop-filter: blur(5px); /* Adds a modern frosted glass effect */
+        }
+
+        /* --- Content Elements --- */
+        h1 {
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 2.5em;
+            color: #b0c4de;
+            text-shadow: 0 0 10px rgba(100, 149, 237, 0.6);
+            margin-bottom: 40px;
+        }
+
+        .data-panel {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .panel-card {
+            background-color: rgba(15, 20, 40, 0.9);
+            padding: 25px;
+            border-left: 4px solid #6495ed;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
+        }
+        
+        .panel-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(100, 149, 237, 0.4); /* Glow on hover */
+        }
+
+        .panel-card h2 {
+            font-size: 1.2em;
+            color: #90bfff;
+            margin-top: 0;
+            border-bottom: 1px dashed rgba(100, 149, 237, 0.5);
+            padding-bottom: 10px;
+        }
+
+        .data-value {
+            display: block;
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #a9b3ff;
+            margin-top: 10px;
+        }
+
+        /* Utility styling for simulated data points */
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .status-ok { background-color: #32cd32; } /* Lime Green */
+        .status-alert { background-color: #ff6347; } /* Tomato Red */
+
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <h1>// GLOBAL SYSTEM OVERVIEW // DATA STREAM INITIATED</h1>
+
+        <div class="data-panel">
+            
+            <div class="panel-card">
+                <h2>Core Temperature</h2>
+                <p>Operational status of primary reactor core.</p>
+                <span class="data-value">98.4%</span>
+                <small>Status: <span class="status-indicator status-ok"></span> Optimal Range</small>
+            </div>
+            
+            <div class="panel-card">
+                <h2>Network Latency</h2>
+                <p>Average data transfer time across all connected nodes.</p>
+                <span class="data-value">12ms</span>
+                <small>Status: <span class="status-indicator status-ok"></span> Nominal</small>
+            </div>
+
+            <div class="panel-card">
+                <h2>Security Integrity</h2>
+                <p>Current threat assessment level. (Last scan: 00:03:12)</p>
+                <span class="data-value">99.99%</span>
+                <small>Status: <span class="status-indicator status-ok"></span> Secure Protocol Active</small>
+            </div>
+            
+            <div class="panel-card">
+                <h2>Energy Reserves</h2>
+                <p>Remaining power capacity for next cycle.</p>
+                <span class="data-value">78%</span>
+                <small>Status: <span class="status-indicator status-alert"></span> Monitoring Drop</small>
+            </div>
+
+        </div>
+        
+        <div style="margin-top: 50px; text-align: center; color: #aaa;">
+            <p>Data stream active. Visualization updated: [System Time]</p>
+        </div>
+    </div>
+</body>
+</html>

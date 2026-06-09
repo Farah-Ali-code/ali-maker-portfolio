@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile Card</title>
+  <style>
+    :root {
+      --couleur-fond-page: #0a0d12;
+      --opacite-bruit-fond: 0.06;
+
+      /* Réduction suggérée du flou si la machine souffle encore un peu */
+      --carte-intensite-flou: 12px; 
+      --carte-fond-couleur-1: rgba(18, 24, 32, 0.82);
+      --carte-fond-couleur-2: rgba(12, 16, 22, 0.54);
+      --carte-bordure-couleur: rgba(29, 158, 117, 0.14);
+
+      --texte-titre: #e8f0ea;
+      --texte-sous-titre: #6b8a7a;
+      --texte-corps: #7a9088;
+      --couleur-accent-principale: #1d9e75;
+      --couleur-accent-secondaire: #9f92f0;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--couleur-fond-page); }
+
+    .bg {
+      position: relative; width: 100%; padding: 6rem 1rem;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--couleur-fond-page);
+    }
+
+    canvas {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      pointer-events: none;
+    }
+
+    .noise {
+      position: absolute; inset: 0; pointer-events: none;
+      opacity: var(--opacite-bruit-fond); mix-blend-mode: screen;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+    }
+
+    .fade-top, .fade-bot {
+      position: absolute; left: 0; right: 0; height: 140px; pointer-events: none; z-index: 2;
+    }
+    .fade-top { top: 0; background: linear-gradient(to bottom, var(--couleur-fond-page), transparent); }
+    .fade-bot { bottom: 0; background: linear-gradient(to top, var(--couleur-fond-page), transparent); }
+
+    .card {
+      position: relative; z-index: 3; width: 320px; border-radius: 18px; padding: 2rem;
+      background: linear-gradient(135deg, var(--carte-fond-couleur-1), var(--carte-fond-couleur-2));
+      border: 1px solid var(--carte-bordure-couleur);
+      backdrop-filter: blur(var(--carte-intensite-flou));
+      -webkit-backdrop-filter: blur(var(--carte-intensite-flou));
+      /* Isole la carte sur son propre calque GPU pour accélérer le flou */
+      will-change: transform, backdrop-filter; 
+      transform: translateZ(0);
+    }
+
+    .tag { font-family: monospace; font-size: .75rem; color: var(--couleur-accent-principale); margin-bottom: .75rem; }
+    .title { font-size: 1.1rem; font-weight: 600; color: var(--texte-titre); }
+    .sub { font-size: .82rem; color: var(--texte-sous-titre); margin-top: .2rem; }
+    .divider { height: 1px; background: rgba(255, 255, 255, .07); margin: 1.25rem 0; }
+    .label { font-family: monospace; font-size: .73rem; color: var(--couleur-accent-secondaire); margin-bottom: .6rem; }
+    .label.g { color: var(--couleur-accent-principale); }
+    .body { font-size: .85rem; color: var(--texte-corps); line-height: 1.6; }
+    .slide { display: flex; width: 100%; justify-content: space-evenly; }
+    .container { display: flex; width: 100%; flex-direction: column; gap: 1rem; }
+  </style>
+</head>
+
+<body>
+
+  <div style="height:60vh;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.15);font-family:monospace;font-size:.8rem">
+    ↑ contenu au dessus</div>
+
+  <section class="bg" id="section-arriere-plan">
+    <canvas id="canvas-brouillard"></canvas>
+    <div class="noise"></div>
+    <div class="fade-top"></div>
+    <div class="fade-bot"></div>
+
+    <div class="container">
+      <div class="slide">
+        <div class="card">
+          <div class="tag">// Aujourd'hui</div>
+          <p class="title">Senior Front-End Engineer</p>
+          <p class="sub">chez Nebula Labs</p>
+          <div class="divider"></div>
+          <div class="label">// Localisation</div>
+          <p class="body" style="color:#c8d8d0">Paris, France — Remote friendly</p>
+          <div class="divider"></div>
+          <div class="label g">// Centres d'intérêt</div>
+          <p class="body">Creative coding, WebGL,<br>design systems, café de spécialité.</p>
+        </div>
+        <div class="card">
+          <div class="tag">// Aujourd'hui</div>
+          <p class="title">Senior Front-End Engineer</p>
+          <p class="sub">chez Nebula Labs</p>
+          <div class="divider"></div>
+          <div class="label">// Localisation</div>
+          <p class="body" style="color:#c8d8d0">Paris, France — Remote friendly</p>
+          <div class="divider"></div>
+          <div class="label g">// Centres d'intérêt</div>
+          <p class="body">Creative coding, WebGL,<br>design systems, café de spécialité.</p>
+        </div>
+      </div>
+      <div class="slide">
+        <div class="card">
+          <div class="tag">// Aujourd'hui</div>
+          <p class="title">Senior Front-End Engineer</p>
+          <p class="sub">chez Nebula Labs</p>
+          <div class="divider"></div>
+          <div class="label">// Localisation</div>
+          <p class="body" style="color:#c8d8d0">Paris, France — Remote friendly</p>
+          <div class="divider"></div>
+          <div class="label g">// Centres d'intérêt</div>
+          <p class="body">Creative coding, WebGL,<br>design systems, café de spécialité.</p>
+        </div>
+        <div class="card">
+          <div class="tag">// Aujourd'hui</div>
+          <p class="title">Senior Front-End Engineer</p>
+          <p class="sub">chez Nebula Labs</p>
+          <div class="divider"></div>
+          <div class="label">// Localisation</div>
+          <p class="body" style="color:#c8d8d0">Paris, France — Remote friendly</p>
+          <div class="divider"></div>
+          <div class="label g">// Centres d'intérêt</div>
+          <p class="body">Creative coding, WebGL,<br>design systems, café de spécialité.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div style="height:60vh;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.15);font-family:monospace;font-size:.8rem">
+    ↓ contenu en dessous</div>
+
+  <script>
+    const CONFIG = {
+      orbes: {
+        quantite: 15,
+        dispersion: 0.12,
+        etendueVerticale: 2.5,
+        tailleMinimale: 0.15,
+        variationTaille: 0.70,
+        opaciteCoeur: 0.65,
+        opaciteMilieu: 0.22
+      },
+      animation: {
+        fluiditeScroll: 0.07,
+        intensiteParallaxe: 0.4,
+        vitesseBase: 1.03,
+        multiplicateurVitesse: 2.2
+      },
+      grille: { colonnes: 3 },
+      palette: [
+        { hue: 158, saturation: 65, lightness: 22 },
+        { hue: 258, saturation: 70, lightness: 22 },
+        { hue: 158, saturation: 100, lightness: 8 },
+        { hue: 252, saturation: 75, lightness: 11 },
+      ]
+    };
+
+    const sectionBackground = document.getElementById('section-arriere-plan');
+    const canvasElement = document.getElementById('canvas-brouillard');
+    const contexteCanvas = canvasElement.getContext('2d', { alpha: false });
+
+    function obtenirCouleurInterpolee(ratioProgression) {
+      const indexSegment = ratioProgression * (CONFIG.palette.length - 1);
+      const indexCouleurBase = Math.min(Math.floor(indexSegment), CONFIG.palette.length - 2);
+      const fractionRestante = indexSegment - indexCouleurBase;
+
+      const couleurDepart = CONFIG.palette[indexCouleurBase];
+      const couleurArrivee = CONFIG.palette[indexCouleurBase + 1];
+
+      return {
+        hue: couleurDepart.hue + (couleurArrivee.hue - couleurDepart.hue) * fractionRestante,
+        saturation: couleurDepart.saturation + (couleurArrivee.saturation - couleurDepart.saturation) * fractionRestante,
+        lightness: couleurDepart.lightness + (couleurArrivee.lightness - couleurDepart.lightness) * fractionRestante
+      };
+    }
+
+    // NOUVEAU : Fonction de pré-rendu. On dessine le dégradé sur un canvas invisible.
+    function creerTextureOrbe(couleur) {
+      const offscreenCanvas = document.createElement('canvas');
+      const tailleTexture = 512; // Résolution fixe pour le dégradé pré-calculé
+      offscreenCanvas.width = tailleTexture;
+      offscreenCanvas.height = tailleTexture;
+      const ctx = offscreenCanvas.getContext('2d');
+      const rayon = tailleTexture / 2;
+
+      const degradeRadial = ctx.createRadialGradient(rayon, rayon, 0, rayon, rayon, rayon);
+      degradeRadial.addColorStop(0, `hsla(${couleur.hue},${couleur.saturation}%,${couleur.lightness}%,${CONFIG.orbes.opaciteCoeur})`);
+      degradeRadial.addColorStop(0.5, `hsla(${couleur.hue},${couleur.saturation}%,${couleur.lightness}%,${CONFIG.orbes.opaciteMilieu})`);
+      degradeRadial.addColorStop(1, `hsla(${couleur.hue},${couleur.saturation}%,${couleur.lightness}%,0)`);
+
+      ctx.fillStyle = degradeRadial;
+      ctx.fillRect(0, 0, tailleTexture, tailleTexture);
+
+      return offscreenCanvas; // Retourne l'image toute prête
+    }
+
+    function genererOrbesLumineux() {
+      return Array.from({ length: CONFIG.orbes.quantite }, (_, index) => {
+        const ratioDeProgression = index / (CONFIG.orbes.quantite - 1);
+        const variationAleatoire = (Math.random() - 0.5) * CONFIG.orbes.dispersion * 2;
+        const vitesseParallaxe = Math.max(CONFIG.animation.vitesseBase, ratioDeProgression + variationAleatoire) * CONFIG.animation.multiplicateurVitesse;
+        
+        const indexColonne = index % CONFIG.grille.colonnes;
+        const indexLigne = Math.floor(index / CONFIG.grille.colonnes);
+        
+        const positionRelativeX = (indexColonne + 0.5) / CONFIG.grille.colonnes + (Math.random() - 0.5) * 0.25;
+        const positionRelativeY = ((indexLigne + 0.5) / Math.ceil(CONFIG.orbes.quantite / CONFIG.grille.colonnes)) * CONFIG.orbes.etendueVerticale + (Math.random() - 0.5) * 0.25;
+
+        const couleurCalculee = obtenirCouleurInterpolee(Math.random());
+        // On génère la texture unique pour cet orbe
+        const texturePreRendue = creerTextureOrbe(couleurCalculee);
+
+        return {
+          centreX: Math.max(0.05, Math.min(0.95, positionRelativeX)),
+          centreY: Math.max(0.05, positionRelativeY),
+          rayonRelatif: CONFIG.orbes.tailleMinimale + Math.random() * CONFIG.orbes.variationTaille,
+          vitesseParallaxe,
+          texture: texturePreRendue // On stocke l'image pré-calculée
+        };
+      });
+    }
+
+    const listeOrbes = genererOrbesLumineux();
+    let defilementLisseActuel = window.scrollY;
+    let frameDemandee = false;
+    let sectionVisible = true; // Variable pour vérifier si la section est à l'écran
+
+    function redimensionnerCanvas() {
+      canvasElement.width = sectionBackground.offsetWidth;
+      canvasElement.height = sectionBackground.offsetHeight;
+      if (sectionVisible) dessinerOrbes(); 
+    }
+
+    function dessinerOrbes() {
+      const largeurCanvas = canvasElement.width;
+      const hauteurCanvas = canvasElement.height;
+      const limiteHauteSection = sectionBackground.offsetTop;
+      const defilementRelatif = defilementLisseActuel - limiteHauteSection;
+
+      contexteCanvas.fillStyle = '#0a0d12';
+      contexteCanvas.fillRect(0, 0, largeurCanvas, hauteurCanvas);
+
+      listeOrbes.forEach(orbe => {
+        const decalageVertical = defilementRelatif * orbe.vitesseParallaxe * CONFIG.animation.intensiteParallaxe;
+        const positionPixelX = orbe.centreX * largeurCanvas;
+        const positionPixelY = (orbe.centreY * hauteurCanvas) - decalageVertical;
+        const rayonPixel = orbe.rayonRelatif * Math.max(largeurCanvas, hauteurCanvas);
+
+        // Si l'orbe sort de l'écran, on l'ignore (Culling)
+        if (positionPixelY + rayonPixel < 0 || positionPixelY - rayonPixel > hauteurCanvas) return;
+
+        // NOUVEAU : On utilise drawImage pour copier la texture pré-calculée. 
+        // Le GPU fait ça instantanément.
+        contexteCanvas.drawImage(
+          orbe.texture, 
+          positionPixelX - rayonPixel, 
+          positionPixelY - rayonPixel, 
+          rayonPixel * 2, 
+          rayonPixel * 2
+        );
+      });
+    }
+
+    function boucleAnimation() {
+      // Si la section n'est pas à l'écran, on coupe tout
+      if (!sectionVisible) {
+        frameDemandee = false;
+        return;
+      }
+
+      const differenceScroll = window.scrollY - defilementLisseActuel;
+      
+      if (Math.abs(differenceScroll) > 0.1) {
+        defilementLisseActuel += differenceScroll * CONFIG.animation.fluiditeScroll;
+        dessinerOrbes();
+        requestAnimationFrame(boucleAnimation);
+      } else {
+        frameDemandee = false;
+      }
+    }
+
+    // NOUVEAU : Intersection Observer pour éteindre l'animation si on ne la regarde pas
+    const observateurVisibilite = new IntersectionObserver((entrees) => {
+      sectionVisible = entrees[0].isIntersecting;
+      if (sectionVisible && !frameDemandee) {
+        frameDemandee = true;
+        requestAnimationFrame(boucleAnimation);
+      }
+    }, { threshold: 0 }); // threshold: 0 signifie qu'il se déclenche dès qu'un pixel entre/sort
+
+    observateurVisibilite.observe(sectionBackground);
+
+    window.addEventListener('scroll', () => {
+      if (sectionVisible && !frameDemandee) {
+        frameDemandee = true;
+        requestAnimationFrame(boucleAnimation);
+      }
+    });
+
+    redimensionnerCanvas();
+    window.addEventListener('resize', redimensionnerCanvas);
+    
+    frameDemandee = true;
+    boucleAnimation();
+  </script>
+</body>
+
+</html>

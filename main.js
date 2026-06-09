@@ -242,6 +242,34 @@ function getProjectColors() {
 
 const projectColors = getProjectColors();
 
+const defaultZoneTrnastionRange = 0.15;
+//zonne range entre [0,1] (comme ya deux zones 100% = 50% du canva)
+//génere une proba + ou moins forte dépendement de la position du y et de si 
+function  transitionProbability(y,zoneRange =defaultZoneTrnastionRange,intensity = 0){ 
+  //(comme ya deux zones 100% = 50% du canva)
+  let limitHauteduBas = zoneRange*canvas.height/2;
+  let limitBasseDuHaut = ((canvas.height)-zoneRange*canvas.height/2);
+
+
+if(y < limitHauteduBas || y > limitBasseDuHaut  ){
+  let pourcentageDeLaZONE;
+  if( y < limitHauteduBas){
+       pourcentageDeLaZONE= y/limitHauteduBas;
+       console.log(pourcentageDeLaZONE)
+  }else{
+       pourcentageDeLaZONE= (y-limitBasseDuHaut)/ (canvas.height-limitBasseDuHaut);
+       console.log(pourcentageDeLaZONE)
+  }
+    // [0,2] a priorit
+  if( Math.random()*pourcentageDeLaZONE*2  > 1-intensity){
+    return y;
+  }
+  return 0;
+}
+return y;
+
+}
+
 // --- FONCTION DE DESSIN ---
 function draw() {
   // Adapter la taille du canvas à l'écran
@@ -255,14 +283,17 @@ function draw() {
   const tailleTranche = 100 / nbTransitions;
 
   for (let i = 0; i < blockCount; i++) {
-    // Positions en % convertis en pixels
+    // [0,100]
     let xPct = Math.random() * 100;
     let yPct = Math.random() * 100;
 
+    //[0,width ou height]
     let x = (xPct * canvas.width) / 100;
     let y = (yPct * canvas.height) / 100;
-
-    // Logique de couleur basée sur Y
+        
+     y = transitionProbability(y) ;
+     if(y!=0){
+     // Logique de couleur basée sur Y
     let colorBase;
     if (nbTransitions === 0) {
       colorBase = projectColors[0].join(',');
@@ -270,8 +301,8 @@ function draw() {
       const numTranche = Math.min(Math.floor(yPct / tailleTranche), nbTransitions - 1);
       const positionLocale = (yPct - (numTranche * tailleTranche)) / tailleTranche;
 
-      // Ton algorithme avec le blendFactor
-      let blendFactor = 1.2;
+      // Ton algorithme avec le blendFactor ( a quel point les couleurs osnt mélanger )
+      let blendFactor = 1.1;
       let adjustedFactor = positionLocale + (Math.random() - 0.5) * (blendFactor - 1);
 
       colorBase = lerpColor(projectColors[numTranche], projectColors[numTranche + 1], adjustedFactor);
@@ -283,15 +314,19 @@ function draw() {
     // Dimensions aléatoires (ton alternance horizontal/vertical)
     let w, h;
     if (Math.random() > 0.5) {
-      w = Math.floor(Math.random() * 400) + 10;
-      h = Math.floor(Math.random() * 40) + 2;
+      //    ((Math.random()*2)-1) -------> [-1,1]
+      w = Math.floor(((Math.random()*2)-1) * 400) + 10;
+      h = Math.floor(((Math.random()*2)-1) * 40) + 2;
     } else {
-      w = Math.floor(Math.random() * 80) + 2;
-      h = Math.floor(Math.random() * 300) + 10;
+      w = Math.floor(((Math.random()*2)-1) * 80) + 2;
+      h = Math.floor(((Math.random()*2)-1) * 300) + 10;
     }
 
     // Dessiner le rectangle
     ctx.fillRect(x, y, w, h);
+     }
+ 
+    
   }
 }
 
