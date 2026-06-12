@@ -1,0 +1,201 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   <style>
+/* --- Le Fond (pour la démo) --- */
+body {
+  background-color: #050505;
+  background-image: radial-gradient(circle at 50% 50%, #111 0%, #000 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: 'Courier New', Courier, monospace;
+  margin: 0;
+}
+
+/* --- La Carte --- */
+.futuristic-card {
+  position: relative;
+  width: 380px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(63, 3, 3, 0.6) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.1), inset 0 0 10px rgba(0, 255, 255, 0.05);
+  overflow: hidden;
+  color: #e0e0e0;
+}
+
+/* --- Le Bruit (Détaillé) --- */
+.detailed-grain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* baseFrequency et numOctaves augmentés pour un grain fin, dense et complexe */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.25;
+  z-index: 1;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+/* --- L'Image --- */
+.project-image {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 160px;
+  /* Remplacez l'URL par l'image de votre projet */
+  background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=500&q=80');
+  background-size: cover;
+  background-position: center;
+  border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+}
+
+/* Application d'un filtre pour intégrer l'image au style futuriste */
+.project-image::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* --- Le Contenu --- */
+.card-content {
+  position: relative;
+  z-index: 2;
+  padding: 20px 25px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* --- Typographie --- */
+.project-title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+  font-family: system-ui, sans-serif;
+}
+
+.project-category {
+  margin: 5px 0 10px 0;
+  font-size: 0.75rem;
+  color: #ff00ff; /* Couleur magenta pour contraster avec le cyan */
+  letter-spacing: 2px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.project-description {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #a0aab5;
+  font-family: system-ui, sans-serif;
+}
+
+/* --- Disposition des Tags en Lignes --- */
+.tags-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tags-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.row-label {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: bold;
+  letter-spacing: 1px;
+  width: 50px; /* Aligne parfaitement les deux listes de tags */
+}
+
+.tags-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 8px;
+  overflow-x: auto; /* Permet de scroller horizontalement s'il y a trop de tags */
+  padding-bottom: 2px;
+}
+
+/* Masquer la scrollbar pour un design plus propre */
+.tags-list::-webkit-scrollbar {
+  display: none;
+}
+
+/* --- Styles des Tags --- */
+.tag {
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  font-family: system-ui, sans-serif;
+}
+
+.tag-tech {
+  background: rgba(0, 255, 255, 0.1);
+  color: #00ffff;
+  border: 1px solid #00ffff;
+  box-shadow: inset 0 0 5px rgba(0, 255, 255, 0.2);
+}
+
+.tag-soft {
+  background: transparent;
+  color: #ff00ff;
+  border: 1px solid rgba(255, 0, 255, 0.5);
+}
+   </style>
+</head>
+<body>
+<div class="card futuristic-card">
+  <div class="noise detailed-grain"></div>
+  
+  <div class="project-image"></div>
+  
+  <div class="card-content">
+    <div class="text-content">
+      <h2 class="project-title">PROJET // NEBULA</h2>
+      <h3 class="project-category">CATÉGORIE : BIG DATA & UI</h3>
+      <p class="project-description">Développement d'une interface de visualisation de données en temps réel. Optimisation des flux et architecture asynchrone.</p>
+    </div>
+
+    <div class="tags-layout">
+      
+      <div class="tags-row">
+        <div class="tags-list">
+          <span class="tag tag-tech">Vue.js</span>
+          <span class="tag tag-tech">Python</span>
+        </div>
+      </div>
+
+      <div class="tags-row">
+        <div class="tags-list">
+          <span class="tag tag-soft">Problem Solving</span>
+          <span class="tag tag-soft">Agile</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

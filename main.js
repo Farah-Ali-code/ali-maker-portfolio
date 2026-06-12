@@ -209,32 +209,30 @@ function getProjectColors() {
 
 const projectColors = getProjectColors();
 
-const defaultZoneTrnastionRange = 0.15;
+
+const defaultZoneRange = 0.25; // 15% de l'écran en haut, 15% en bas
+
 //zonne range entre [0,1] (comme ya deux zones 100% = 50% du canva)
 //génere une proba + ou moins forte dépendement de la position du y et de si 
-function  transitionProbability(y,zoneRange =defaultZoneTrnastionRange,intensity = 0){ 
-  //(comme ya deux zones 100% = 50% du canva)
-  let limitHauteduBas = zoneRange*canvas.height/2;
-  let limitBasseDuHaut = ((canvas.height)-zoneRange*canvas.height/2);
+function shouldDraw(y, zoneRange = defaultZoneRange) {
+  const margin = canvas.height * zoneRange;
 
-
-if(y < limitHauteduBas || y > limitBasseDuHaut  ){
-  let pourcentageDeLaZONE;
-  if( y < limitHauteduBas){
-       pourcentageDeLaZONE= y/limitHauteduBas;
-  }else{
-       pourcentageDeLaZONE= (y-limitBasseDuHaut)/ (canvas.height-limitBasseDuHaut);
+  // Zone d'atténuation du haut
+  if (y < margin) {
+    const proba = y / margin; // 0% tout en haut, 100% à la fin de la marge
+    return Math.random() < proba;
   }
-    // [0,2] a priorit
-  if( Math.random()*pourcentageDeLaZONE*2  > 1-intensity){
-    return y;
+
+  // Zone d'atténuation du bas
+  if (y > canvas.height - margin) {
+    const distanceDepuisLeBas = canvas.height - y;
+    const proba = distanceDepuisLeBas / margin; // 0% tout en bas, 100% au début de la marge
+    return Math.random() < proba;
   }
-  return 0;
-}
-return y;
 
+  // Zone centrale : on dessine à 100%
+  return true;
 }
-
 // --- FONCTION DE DESSIN ---
 function draw() {
   // Adapter la taille du canvas à l'écran
@@ -256,13 +254,13 @@ function draw() {
     let x = (xPct * canvas.width) / 100;
     let y = (yPct * canvas.height) / 100;
         
-     y = transitionProbability(y) ;
-     if(y!=0){
-     // Logique de couleur basée sur Y
-    let colorBase;
-    if (nbTransitions === 0) {
-      colorBase = projectColors[0].join(',');
-    } else {
+     if (shouldDraw(y)) {
+      
+      // Logique de couleur basée sur Y
+      let colorBase;
+      if (nbTransitions === 0) {
+        colorBase = projectColors[0].join(',');
+      } else {
       const numTranche = Math.min(Math.floor(yPct / tailleTranche), nbTransitions - 1);
       const positionLocale = (yPct - (numTranche * tailleTranche)) / tailleTranche;
 
@@ -301,6 +299,12 @@ window.addEventListener('resize', draw);
 // Premier rendu
 draw();
 
+/*
+====================================================================================================================================================================================
+
+                                                            C   U   B   I   C         B   A   C   K   G   R   O   U   N   D
+====================================================================================================================================================================================
+*/
 
  const CONFIG = {
       orbes: {

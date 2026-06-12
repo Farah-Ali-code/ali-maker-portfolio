@@ -126,11 +126,9 @@ nav {
 margin-top: 20px;
 margin-bottom: 20px;
   /* Valeurs initiales — transparent sur le hero */
-  background: rgba(5, 1, 18, .88);
+background: rgb(from var(--couleur-fond-page) r g b / 70%);
   backdrop-filter: blur(18px);
-  border-bottom-color: rgba(100, 60, 200, .18);
 
-  transition: background .4s, backdrop-filter .4s, border-color .4s;
 
   
 }
@@ -225,25 +223,47 @@ margin-bottom: 20px;
 #hero {
   position: relative;
   height: 100vh;
+  width: 100vw;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  /* contenu collé en bas */
+  
+  /* --- Le placement en bas à gauche --- */
+  justify-content: flex-start; /* Aligne le contenu à gauche sur l'axe horizontal */
+  align-items: flex-end;       /* Aligne le contenu en bas sur l'axe vertical */
+  padding: 40px;               /* Marge intérieure pour décoller le texte des bords */
+  
   overflow: hidden;
-  margin-top:0;
 }
 
-/* Div qui porte le background-image (injecté par JS) */
-.hero-img {
+/* 1. L'image (aucun changement) */
+.hero-image {
+  position: absolute; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+  z-index: 1; 
+}
+
+/* 2. Le texte (nettoyé) */
+.hero-text {
+  top: 25%;
+  left: 0;
   position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center 30%;
-  /* léger dézoom initial pour l'effet ken burns */
-  transform: scale(1.06);
-  transition: transform 8s ease-out;
-}
+  z-index: 2; 
+  color: white;
+  
+  font-size: 3rem;
+  margin: 0;
+  text-shadow: 0px 4px 15px rgba(0, 0, 0, 0.8); 
+max-width:950px;
+    font-family: var(--display);
+    font-size: 8.2rem;
+    font-weight: 700;
+    color: var(--text-main);
+    letter-spacing: -.01em;
 
+}
 
 /* Titre principal — texte en dégradé */
 h1 {
@@ -328,6 +348,7 @@ h1 {
 
 /* Titre de section */
 .sec-title {
+  z-index:0;/* for the card section it need to be over the bg*/
   font-family: var(--display);
   font-size: clamp(1.8rem, 3.5vw, 2.8rem);
   font-weight: 700;
@@ -890,57 +911,6 @@ canvas {
   background: linear-gradient(to top, var(--couleur-fond-page), transparent);
 }
 
-.card {
-  position: relative;
-  z-index: 3;
-  width: 320px;
-  border-radius: 18px;
-  padding: 2rem;
-  background: linear-gradient(135deg, var(--carte-fond-couleur-1), var(--carte-fond-couleur-2));
-  border: 1px solid var(--carte-bordure-couleur);
-  backdrop-filter: blur(var(--carte-intensite-flou));
-  -webkit-backdrop-filter: blur(var(--carte-intensite-flou));
-  /* Isole la carte sur son propre calque GPU pour accélérer le flou */
-  will-change: transform, backdrop-filter;
-  transform: translateZ(0);
-}
-
-.tag {
-  font-family: monospace;
-  font-size: .75rem;
-  color: var(--couleur-accent-principale);
-  margin-bottom: .75rem;
-}
-
-.title {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--texte-titre);
-}
-
-.sub {
-  font-size: .82rem;
-  color: var(--texte-sous-titre);
-  margin-top: .2rem;
-}
-
-.divider {
-  height: 1px;
-  background: rgba(255, 255, 255, .07);
-  margin: 1.25rem 0;
-}
-
-.label {
-  font-family: monospace;
-  font-size: .73rem;
-  color: var(--couleur-accent-secondaire);
-  margin-bottom: .6rem;
-}
-
-.label.g {
-  color: var(--couleur-accent-principale);
-}
-
 .body {
   font-size: .85rem;
   color: var(--texte-corps);
@@ -960,6 +930,159 @@ canvas {
   gap: 1rem;
   margin-top: 15%;
   margin-bottom: 15%;
+}
+
+/*-------------------------------------
+new cards
+--------------------------------------*/
+
+
+/* --- La Carte --- */
+.futuristic-card {
+  position: relative;
+  width: 380px;
+  border-radius: 8px;
+  background:  rgba(var(--deep), 0.25) ;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  overflow: hidden;
+  color: #e0e0e0;
+}
+
+/* --- Le Bruit (Détaillé) --- */
+.detailed-grain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* baseFrequency et numOctaves augmentés pour un grain fin, dense et complexe */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.25;
+  z-index: 1;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+/* --- L'Image --- */
+.project-image {
+  position: relative;
+  display: flex;
+  justify-content:center;
+  z-index: 2;
+  width: 100%;
+  height: 160px;
+}
+
+.project-image>img{
+  display:flex;
+  width:auto;
+  height: 100%;
+}
+
+
+.project-image-long>img{
+  display:flex;
+  width:100% ;
+  height: auto;
+}
+
+/* --- Le Contenu --- */
+.card-content {
+  position: relative;
+  z-index: 2;
+  padding: 20px 25px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* --- Typographie --- */
+.project-title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  font-family: system-ui, sans-serif;
+}
+
+.project-category {
+  margin: 5px 0 10px 0;
+  font-size: 0.75rem;
+  color: #ffffff; /* Couleur magenta pour contraster avec le cyan */
+  letter-spacing: 2px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.project-description {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #a0aab5;
+  font-family: system-ui, sans-serif;
+}
+
+/* --- Disposition des Tags en Lignes --- */
+.tags-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tags-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.row-label {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: bold;
+  letter-spacing: 1px;
+  width: 50px; /* Aligne parfaitement les deux listes de tags */
+}
+
+.tags-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 8px;
+  overflow-x: auto; /* Permet de scroller horizontalement s'il y a trop de tags */
+  padding-bottom: 2px;
+}
+
+/* Masquer la scrollbar pour un design plus propre */
+.tags-list::-webkit-scrollbar {
+  display: none;
+}
+
+/* --- Styles des Tags --- */
+.tag {
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  font-family: system-ui, sans-serif;
+}
+
+.tag-tech {
+  /* Un cyan plus doux, tournant légèrement vers l'eau (Teal) */
+  background: rgba(77, 208, 225, 0.1);
+  color: #4dd0e1;
+  border: 1px solid rgba(77, 208, 225, 0.4); /* Opacité réduite de 1 à 0.4 */
+  box-shadow: inset 0 0 5px rgba(77, 208, 225, 0.1); /* Ombre plus subtile */
+}
+
+.tag-soft {
+  /* Un violet lavande, beaucoup plus lisible et moins sombre que le #7500a8 */
+  background: rgba(179, 136, 255, 0.05); /* Ajout d'un très léger fond pour l'harmonie */
+  color: #b388ff;
+  border: 1px solid rgba(179, 136, 255, 0.4); /* Opacité réduite à 0.4 */
+  box-shadow: inset 0 0 15px rgba(179, 136, 255, 0.3); /* Ombre corrigée avec la bonne couleur */
 }
 
 /* ─────────────────────────────────────────────

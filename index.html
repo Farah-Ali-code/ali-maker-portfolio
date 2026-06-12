@@ -38,13 +38,15 @@
       <li><span class="nav-sep">//</span></li>
       <li><a href="#hero">Home</a></li>
       <li><span class="nav-sep">//</span></li>
-      <li><a href="#gallery">Gallery</a></li>
-      <li><span class="nav-sep">//</span></li>
       <li><a href="#projects">Projects</a></li>
+      <li><span class="nav-sep">//</span></li>
+      <li><a href="#shcool-section">shcool-section</a></li>
+      <li><span class="nav-sep">//</span></li>
+      <li><a href="#gallery">carousel</a></li>
       <li><span class="nav-sep">//</span></li>
       <li><a href="#process">parcours</a></li>
       <li><span class="nav-sep">//</span></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#reseaux">Contact</a></li>
       <li><span class="nav-sep">//</span></li>
     </ul>
 
@@ -64,15 +66,15 @@
        - .hero-overlay : dégradé sombre du bas pour la lisibilité
        - .hero-tint : halo violet en bas à gauche pour l'ambiance
        ═══════════════════════════════════════ -->
-  <section id="hero">
+  <div id="hero">
 
     <!-- Image de fond (URL + animation injectées par JS) -->
-    <div class="hero-img" id="heroImg">
-      <img src="assets/img/hero-bg.png">
-    </div>
+
+    <img class="hero-image" src="assets/img/hero-bg.png">
+    <h2 class="hero-text">ali's maker portfolio</h2>
 
 
-  </section>
+  </div>
 
 
   <!-- ═══════════════════════════════════════
@@ -90,7 +92,7 @@
          5. Augmenter height de .gallery-scroll-container (ex: 500vh pour 5 panels)
          6. Mettre à jour la constante PANEL_COUNT dans main.js
        ═══════════════════════════════════════ -->
- 
+
 
 
   <!-- ═══════════════════════════════════════
@@ -123,8 +125,7 @@
 
         <!-- Photo du projet — remplacer src par ta photo -->
         <div class="proj-photo">
-          <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80" alt="PCB OpenTherm"
-            loading="lazy">
+          <img src="assets/img/tiny-renderer.png" alt="PCB OpenTherm" loading="lazy">
           <div class="proj-photo-num">01 &middot; hardware</div>
         </div>
 
@@ -132,30 +133,28 @@
         <div class="proj-content">
           <div>
             <div class="proj-header">
-              <div class="proj-name">OpenTherm Node</div>
-              <span class="proj-type">PCB</span>
+              <div class="proj-name">tiny-renderer</div>
+              <span class="proj-type">Software Graphics</span>
             </div>
             <p class="proj-desc">
-              Custom PCB bridging an OpenTherm boiler to MQTT over WiFi.
-              Designed in KiCad, manufactured at JLCPCB. Firmware in C
-              with FreeRTOS &mdash; sub-500ms response time, running 24/7.
+              Implementation of a 3D software rasterizer from scratch in C++ based on a university course (not from mine
+              university ).
+              Built to understand how GPUs work under the hood, covering Bresenham's line drawing, z-buffering,
+              perspective projection, and shading, all without external graphics libraries.
             </p>
-            <!-- Specs techniques (ajouter/supprimer des .spec-item librement) -->
             <div class="proj-specs">
-              <div class="spec-item"><strong>MCU</strong>ESP32-S3</div>
-              <div class="spec-item"><strong>Protocol</strong>OpenTherm v2.2</div>
-              <div class="spec-item"><strong>Stack</strong>FreeRTOS + MQTT</div>
-              <div class="spec-item"><strong>Latency</strong>&lt; 500 ms</div>
-              <div class="spec-item"><strong>Cost</strong>~&euro;18 / board</div>
+              <div class="spec-item"><strong>Language</strong>C++</div>
+              <div class="spec-item"><strong>Core</strong>Rasterization</div>
+              <div class="spec-item"><strong>Output</strong>TGA Images</div>
+              <div class="spec-item"><strong>Dependencies</strong>None (Std Lib)</div>
             </div>
           </div>
-          <!-- Tags technos -->
           <div class="proj-tags">
-            <span class="tag">KiCad</span>
-            <span class="tag">ESP32</span>
-            <span class="tag">FreeRTOS</span>
-            <span class="tag">MQTT</span>
-            <span class="tag">C</span>
+            <span class="tag">C++</span>
+            <span class="tag">3D Graphics</span>
+            <span class="tag">Mathematics</span>
+            <span class="tag">Algorithms</span>
+            <span class="tag">Rasterization</span>
           </div>
         </div>
 
@@ -167,39 +166,37 @@
         <div class="blur"></div>
 
         <div class="proj-photo">
-          <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&q=80"
-            alt="Imprimante 3D MicroScope Stage" loading="lazy">
-          <div class="proj-photo-num">02 &middot; mécatronique</div>
+          <img src="assets/img/documentation-soulserv.png" alt="Technical documentation and web porting" loading="lazy">
+          <div class="proj-photo-num">02 &middot; internship</div>
         </div>
 
         <div class="proj-content">
           <div>
             <div class="proj-header">
-              <div class="proj-name">MicroScope Stage</div>
-              <span class="proj-type">Mécatronique</span>
+              <div class="proj-name">Internship: Soulserv</div>
+              <span class="proj-type">Web & Documentation</span>
             </div>
             <p class="proj-desc">
-              Platine XYZ motorisée imprimée en 3D, pilotée par STM32 via UART.
-              Interface Python sur le PC hôte. Répétabilité &plusmn;5 &micro;m
-              &mdash; BOM complète sous &euro;60.
+              Second-year IT degree internship at the start-up Soulserv.
+              Reverse engineering mission focused on creating comprehensive technical documentation
+              and porting websites from a V1 to a V2 using an internal tool.
             </p>
             <div class="proj-specs">
-              <div class="spec-item"><strong>MCU</strong>STM32F103</div>
-              <div class="spec-item"><strong>Impression</strong>PLA 0.1 mm</div>
-              <div class="spec-item"><strong>Répétabilité</strong>&plusmn;5 &micro;m</div>
-              <div class="spec-item"><strong>Interface</strong>Python / UART</div>
-              <div class="spec-item"><strong>BOM</strong>&lt; &euro;60</div>
+              <div class="spec-item"><strong>Company</strong>Start-up Soulserv</div>
+              <div class="spec-item"><strong>Duration</strong>~2 months</div>
+              <div class="spec-item"><strong>Mission 1</strong>Comprehensive tech doc</div>
+              <div class="spec-item"><strong>Mission 2</strong>Web porting (V1 &rarr; V2)</div>
+              <div class="spec-item"><strong>Method</strong>Reverse engineering</div>
             </div>
           </div>
           <div class="proj-tags">
-            <span class="tag">STM32</span>
-            <span class="tag">3D Print</span>
-            <span class="tag">Python</span>
-            <span class="tag">Stepper</span>
+            <span class="tag">Web Porting</span>
+            <span class="tag">Documentation</span>
+            <span class="tag">Internal Tools</span>
+            <span class="tag">Reverse Eng.</span>
           </div>
         </div>
-
-      </div><!-- /.project-row -->
+      </div>
 
 
       <!-- ── Projet 03 — AMBRE ── -->
@@ -207,106 +204,321 @@
         <div class="blur"></div>
 
         <div class="proj-photo">
-          <img src="https://images.unsplash.com/photo-1555099962-4199c345e5dd?w=800&q=80" alt="Terminal Devlog CLI"
-            loading="lazy">
-          <div class="proj-photo-num">03 &middot; software</div>
+          <a href="https://farah-ali-code.github.io/r4a10-tp-api-2026-battisni-farahal/">
+            <img src="assets/img/tp-api.png" alt="Movie Map Explorer Interface" loading="lazy">
+          </a>
+          <div class="proj-photo-num">03 &middot; web development</div>
         </div>
 
         <div class="proj-content">
-
           <div>
             <div class="proj-header">
-              <div class="proj-name">Devlog CLI</div>
-              <span class="proj-type">CLI / Rust</span>
+              <div class="proj-name">Movie Map Explorer</div>
+              <span class="proj-type">Web / APIs</span>
             </div>
             <p class="proj-desc">
-              Outil terminal pour journaliser les notes d&rsquo;ingénierie.
-              Markdown-based, Git-tracked, full-text searchable.
-              Construit en Rust &mdash; parce que perdre ses breadcrumbs
-              entre deux sessions de debug, c&rsquo;est fini.
+              A novel movie discovery platform blending interactive geographic search with a timeline slider to unearth
+              hidden cinematic gems.
+              Built with a strict MVC architecture using Vanilla JS, integrating TheMovieDB and Leaflet APIs.
+              A collaborative two-person project developed in under two weeks.
             </p>
             <div class="proj-specs">
-              <div class="spec-item"><strong>Langage</strong>Rust 1.76</div>
-              <div class="spec-item"><strong>Format</strong>Markdown + YAML</div>
-              <div class="spec-item"><strong>Sync</strong>Git auto-commit</div>
-              <div class="spec-item"><strong>Binary</strong>~1.2 MB</div>
+              <div class="spec-item"><strong>Stack</strong>Vanilla JS (No FW)</div>
+              <div class="spec-item"><strong>APIs</strong>TMDB &amp; Leaflet.js</div>
+              <div class="spec-item"><strong>Pattern</strong>MVC Architecture</div>
+              <div class="spec-item"><strong>Timeline</strong>1-2 weeks (46 commits)</div>
+              <div class="spec-item"><strong>Team</strong>2 Developers</div>
             </div>
           </div>
           <div class="proj-tags">
-            <span class="tag">Rust</span>
-            <span class="tag">CLI</span>
-            <span class="tag">Git</span>
-            <span class="tag">Markdown</span>
+            <span class="tag">Vanilla JS</span>
+            <span class="tag">REST API</span>
+            <span class="tag">Leaflet</span>
+            <span class="tag">MVC</span>
           </div>
         </div>
 
-      </div><!-- /.project-row -->
+      </div>
 
 
     </div><!-- /.cascade-wrapper -->
   </section>
-    <!-- ═══════════════════════════════════════
+  <!-- ═══════════════════════════════════════
        cards gradiants backgrounds
        ═══════════════════════════════════════ -->
-<section class="bg" id="section-arriere-plan">
+  <section class="bg" id="section-arriere-plan">
     <canvas id="canvas-brouillard"></canvas>
     <div class="noise"></div>
     <div class="fade-top"></div>
     <div class="fade-bot"></div>
 
-    <div class="container">
+    <div class="container" id="shcool-section">
+      <div class="sec-title">dev-and-optimize</div>
+
       <div class="slide">
-        <div class="card">
-          <div class="tag">// Aujourd'hui</div>
-          <p class="title">Senior Front-End Engineer</p>
-          <p class="sub">chez Nebula Labs</p>
-          <div class="divider"></div>
-          <div class="label">// Localisation</div>
-          <p class="body" style="color:#c8d8d0">Paris, France — Remote friendly</p>
-          <div class="divider"></div>
-          <div class="label g">// Centres d'intérêt</div>
-          <p class="body">Creative coding, WebGL,<br>design systems, café de spécialité.</p>
+
+        <div class="card futuristic-card">
+          <div class="noise detailed-grain"></div>
+
+          <div class="project-image">
+            <img src="assets/img/graphe math.png" alt="">
+          </div>
+
+          <div class="card-content">
+            <div class="text-content">
+              <h2 class="project-title">K NEAREST NEIGHBOR</h2>
+              <h3 class="project-category">CATEGORY : ALGORITHMS</h3>
+              <p class="project-description">
+                Group project with <a href="index.html" class="lien">Simon</a> to sort news dispatches. Instead of using
+                keywords, we used a relative approach, measuring a new dispatch's closeness to a reference one to meet
+                client needs for accuracy and speed.
+              </p>
+            </div>
+
+            <div class="tags-layout">
+              <div class="tags-row">
+                <div class="tags-list">
+                  <span class="tag tag-tech">Java</span>
+                  <span class="tag tag-tech">Similarity Algorithms</span>
+                  <span class="tag tag-tech">Research & Git</span>
+                </div>
+              </div>
+
+              <div class="tags-row">
+                <div class="tags-list">
+                  <span class="tag tag-soft">Interested</span>
+                  <span class="tag tag-soft">Precise</span>
+                  <span class="tag tag-soft">Punctual</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="card">
-          <div class="tag">// Aujourd'hui</div>
-          <p class="title">Senior Front-End Engineer</p>
-          <p class="sub">chez Nebula Labs</p>
-          <div class="divider"></div>
-          <div class="label">// Localisation</div>
-          <p class="body" style="color:#c8d8d0">Paris, France — Remote friendly</p>
-          <div class="divider"></div>
-          <div class="label g">// Centres d'intérêt</div>
-          <p class="body">Creative coding, WebGL,<br>design systems, café de spécialité.</p>
+        <div class="card futuristic-card">
+          <div class="noise detailed-grain"></div>
+
+          <div class="project-image">
+            <img src="assets/img/tree search.png" alt="">
+          </div>
+          <div class="card-content">
+            <div class="text-content">
+              <h2 class="project-title">MERGE SORT</h2>
+              <h3 class="project-category">CATEGORY : ALGORITHMS</h3>
+              <p class="project-description">
+                A sorting algorithm that works recursively, like Russian dolls. It was my first real introduction to
+                recursion—a challenging deep dive into separating what the algorithm actually is versus what I thought
+                it was.
+              </p>
+            </div>
+
+            <div class="tags-layout">
+              <div class="tags-row">
+                <div class="tags-list">
+                  <span class="tag tag-tech">Java Functions</span>
+                  <span class="tag tag-tech">Debugging</span>
+                </div>
+              </div>
+
+              <div class="tags-row">
+                <div class="tags-list">
+                  <span class="tag tag-soft">Precise</span>
+                  <span class="tag tag-soft">Attentive</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="sec-title">data-and-admin</div>
+      <div class="slide">
+        <div class="card futuristic-card">
+          <div class="noise detailed-grain"></div>
+
+          <div class="project-image-long">
+            <img src="assets/img/server_install.png" alt="">
+          </div>
+          <div class="card-content">
+            <div class="text-content">
+              <h2 class="project-title">SERVER INSTALLATION</h2>
+              <h3 class="project-category">CATEGORY : SYSADMIN</h3>
+              <p class="project-description">
+                Set up a complete hosting environment from scratch using Apache 2, PostgreSQL, and PHP. A highly
+                autonomous project requiring extensive research to configure and link the different servers together.
+              </p>
+            </div>
+
+            <div class="tags-layout">
+              <div class="tags-row">
+                <div class="tags-list">
+                  <span class="tag tag-tech">Bash</span>
+                  <span class="tag tag-tech">SQL Admin</span>
+                  <span class="tag tag-tech">OS File Knowledge</span>
+                </div>
+              </div>
+
+              <div class="tags-row">
+                <div class="tags-list">
+                  <span class="tag tag-soft">Resilient</span>
+                  <span class="tag tag-soft">Careful</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card futuristic-card">
+          <div class="noise detailed-grain"></div>
+
+
+          <div class="project-image-long">
+            <img src="assets/img/bd shcéma.png" alt="">
+          </div>
+
+          <div class="card-content">
+            <div class="text-content">
+              <h2 class="project-title">BOWLING DATABASE</h2>
+              <h3 class="project-category">CATEGORY : DATABASE</h3>
+              <p class="project-description">
+                Designed an SQL database schema for a bowling alley based on client specs and populated it via CSV. A
+                demanding group project that taught me valuable lessons in communication and respecting a partner's
+                perspective.
+              </p>
+            </div>
+
+            <div class="tags-layout">
+              <div class="tags-row">
+                <div class="tags-list">
+                  <span class="tag tag-tech">SQL</span>
+                  <span class="tag tag-tech">Plans (SLR/SEA)</span>
+                  <span class="tag tag-tech">Reports</span>
+                </div>
+              </div>
+
+              <div class="tags-row">
+                <div class="tags-list">
+                  <span class="tag tag-soft">Considerate</span>
+                  <span class="tag tag-soft">Careful</span>
+                  <span class="tag tag-soft">Doubtful</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card futuristic-card">
+          <div class="noise detailed-grain"></div>
+
+          <div class="project-image-long">
+            <img src="assets/img/sae sql.png" alt="">
+          </div>
+
+          <div class="card-content">
+            <div class="text-content">
+              <h2 class="project-title">STATISTICAL ANALYSIS</h2>
+              <h3 class="project-category">CATEGORY : DATA ANALYSIS</h3>
+              <p class="project-description">
+                Cleaned and analyzed accident severity data (2006-2019) using PostgreSQL. Queried the database to
+                extract insights, create graphs, and interpret trends. Worked in collaboration with <a
+                  href="file:///D:/ecole/document%20école/R2/portfolio/vrai-poj/data.html" class="lien">Simon</a>.
+              </p>
+            </div>
+
+            <div class="tags-layout">
+              <div class="tags-row">
+                <div class="tags-list">
+                  <span class="tag tag-tech">SQL</span>
+                  <span class="tag tag-tech">Writing Analyses</span>
+                  <span class="tag tag-tech">Finding Trends</span>
+                </div>
+              </div>
+
+              <div class="tags-row">
+                <div class="tags-list">
+                  <span class="tag tag-soft">Concise</span>
+                  <span class="tag tag-soft">Resourceful (Docs)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="sec-title">teamwork</div>
+      <div class="slide">
+        <div class="card futuristic-card">
+          <div class="noise detailed-grain"></div>
+
+
+          <div class="project-image-long">
+            <img src="assets/img/blender-pres.png" alt="">
+          </div>
+          <div class="card-content">
+            <div class="text-content">
+              <h2 class="project-title">GRAPH PRESENTATION</h2>
+              <h3 class="project-category">CATEGORY : 3D & COMMUNICATION</h3>
+              <p class="project-description">
+                Delivered an English presentation focusing on data description using superlatives. Animated the graph in
+                Blender, allowing for creative freedom and the practical application of 3D tools under a strict
+                deadline.
+              </p>
+            </div>
+
+            <div class="tags-layout">
+              <div class="tags-row">
+                <div class="tags-list">
+                  <span class="tag tag-tech">Blender</span>
+                  <span class="tag tag-tech">Public Speaking</span>
+                </div>
+              </div>
+
+              <div class="tags-row">
+                <div class="tags-list">
+                  <span class="tag tag-soft">Convincing</span>
+                  <span class="tag tag-soft">Adaptive</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card futuristic-card">
+          <div class="noise detailed-grain"></div>
+
+
+          <div class="project-image">
+            <img src="assets/img/zenior-logo.png" alt="">
+          </div>
+          <div class="card-content">
+            <div class="text-content">
+              <h2 class="project-title">GRAPH PRESENTATION</h2>
+              <h3 class="project-category">CATEGORY : 3D & COMMUNICATION</h3>
+              <p class="project-description">
+                Delivered an English presentation focusing on data description using superlatives. Animated the graph in
+                Blender,
+                allowing for creative freedom and the practical application of 3D tools under a strict deadline.
+              </p>
+            </div>
+
+            <div class="tags-layout">
+              <div class="tags-row">
+                <div class="tags-list">
+                  <span class="tag tag-tech">Blender</span>
+                  <span class="tag tag-tech">Public Speaking</span>
+                </div>
+              </div>
+
+              <div class="tags-row">
+                <div class="tags-list">
+                  <span class="tag tag-soft">Convincing</span>
+                  <span class="tag tag-soft">Adaptive</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="slide">
-        <div class="card">
-          <div class="tag">// Aujourd'hui</div>
-          <p class="title">Senior Front-End Engineer</p>
-          <p class="sub">chez Nebula Labs</p>
-          <div class="divider"></div>
-          <div class="label">// Localisation</div>
-          <p class="body" style="color:#c8d8d0">Paris, France — Remote friendly</p>
-          <div class="divider"></div>
-          <div class="label g">// Centres d'intérêt</div>
-          <p class="body">Creative coding, WebGL,<br>design systems, café de spécialité.</p>
-        </div>
-        <div class="card">
-          <div class="tag">// Aujourd'hui</div>
-          <p class="title">Senior Front-End Engineer</p>
-          <p class="sub">chez Nebula Labs</p>
-          <div class="divider"></div>
-          <div class="label">// Localisation</div>
-          <p class="body" style="color:#c8d8d0">Paris, France — Remote friendly</p>
-          <div class="divider"></div>
-          <div class="label g">// Centres d'intérêt</div>
-          <p class="body">Creative coding, WebGL,<br>design systems, café de spécialité.</p>
-        </div>
-      </div>
-    </div>
+
   </section>
 
- <section id="gallery">
+  <section id="gallery">
     <div class="gallery-header reveal">
       <div class="sec-title">My inspiration</div>
     </div>
@@ -321,37 +533,45 @@
         <!-- Panel 01 — Couleur cyan (c1) -->
         <div class="galery-element" data-index="0">
           <!-- Remplacer src par ta propre photo -->
-          <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1600&q=85"
-            alt="gros plan sur un circuit imprimé" loading="lazy">
+          <a href="https://www.youtube.com/watch?v=rGNUHigqUBM">
+            <img src="assets/img/trompette.jpg" alt="">
+          </a>
           <div class="panel-caption">
-            <div class="panel-title">Traces &amp; Vias</div>
+            <div class="panel-title">AngeTheGreat
+            </div>
           </div>
         </div>
 
         <!-- Panel 02 — Couleur violet (c2) -->
         <div class="galery-element" data-index="1">
-          <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=1600&q=85"
-            alt="imprimante 3D en action" loading="lazy">
+          <a href="https://www.youtube.com/watch?v=yPfagLeUa7k">
+            <img src="assets/img/ocean-arceola.jpg" alt="">
+          </a>
           <div class="panel-caption">
-            <div class="panel-title">Layer by Layer</div>
+            <div class="panel-title">Acerola
+            </div>
           </div>
         </div>
 
         <!-- Panel 03 — Couleur vert (c3) -->
         <div class="galery-element" data-index="2">
-          <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1600&q=85"
-            alt="écran de code dans l'obscurité" loading="lazy">
+          <a href="https://www.youtube.com/watch?v=Qz0KTGYJtUk&amp;t=4s">
+            <img src="assets/img/ray-tracing-coding adventure.jpg" alt="">
+          </a>
           <div class="panel-caption">
-            <div class="panel-title">2am Debug Session</div>
+            <div class="panel-title">
+              Sebastian Lague
+            </div>
           </div>
         </div>
 
         <!-- Panel 04 — Couleur ambre (c4) -->
         <div class="galery-element" data-index="3">
-          <img src="https://images.unsplash.com/photo-1603732551681-2e91159b9dc2?w=1600&q=85"
-            alt="établi de maker avec composants" loading="lazy">
+          <a href="https://www.youtube.com/watch?v=8wOUe32Pt-E">
+            <img src="assets/img/dithering-acerola.jpg" alt="">
+          </a>
           <div class="panel-caption">
-            <div class="panel-title">The Bench</div>
+            <div class="panel-title">Acerola</div>
           </div>
         </div>
       </div><!-- /.gallery-scroll-container -->
@@ -437,42 +657,49 @@
        FOOTER
 
        ═══════════════════════════════════════ -->
- <footer>
-        <div class="footer_bg">
-            <div class="footer_arrondi">
-            </div>
-            <div id="reseaux">
+  <footer>
+    <div class="footer_bg">
+      <div class="footer_arrondi">
+      </div>
+      <div id="reseaux">
 
-                <div>
-                    <div class="reseau">
-                        <a href="https://workspace.google.com/intl/fr/gmail/">
-                            <img src="assets/img/logo/gmail/icons8-gmail-nouveau-1000.png" alt="Google logo">
-                        </a>
-                    </div>
-                    <div class="reseau">
-                        <a href="https://www.linkedin.com/in/ali-farah-4b3a46363/">
-                            <img src="assets/img/logo/icons8-linkedin-1000.svg" alt="LinkedIn logo">
-                        </a>
-                    </div>
-                    <div class="reseau">
-                        <a href="https://www.instagram.com/le_four_tout_d_ali?utm_source=ig_web_button_share_sheet&amp;igsh=ZDNlZDc0MzIxNw==">
-                            <img src="assets/img/logo/icons8-instagram-1000.svg" alt="">
-                        </a>
-                    </div>
+        <div>
+          <!--- 
+          <div class="reseau">
+            <a href="https://workspace.google.com/intl/fr/gmail/">
+              <img src="assets/img/logo/gmail/icons8-gmail-nouveau-1000.png" alt="Google logo">
+            </a>
+          </div>
+          -->
 
-                    <div class="reseau">
-                        <a href="https://github.com/Farah-Ali-code">
-                            <img src="assets/img/logo/icons8-git-1000.svg" alt="GitHub logo">
-                        </a>
-                    </div>
-                    <div class="reseau">
-                        <a href="">
-                            <img src="assets/img/logo/X/icons8-twitterx-1000.svg" alt="Twitter logo">
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <!-- 
+          <div class="reseau">
+            <a href="https://www.linkedin.com/in/ali-farah-4b3a46363/">
+              <img src="assets/img/logo/icons8-linkedin-1000.svg" alt="LinkedIn logo">
+            </a>
+          </div>
+          <div class="reseau">
+            <a
+              href="https://www.instagram.com/le_four_tout_d_ali?utm_source=ig_web_button_share_sheet&amp;igsh=ZDNlZDc0MzIxNw==">
+              <img src="assets/img/logo/icons8-instagram-1000.svg" alt="">
+            </a>
+          </div>
+
+          <div class="reseau">
+            <a href="https://github.com/Farah-Ali-code">
+              <img src="assets/img/logo/icons8-git-1000.svg" alt="GitHub logo">
+            </a>
+          </div>
+          <!---
+          <div class="reseau">
+            <a href="">
+              <img src="assets/img/logo/X/icons8-twitterx-1000.svg" alt="Twitter logo">
+            </a>
+          </div>
+           -->
+
+        </div>
+      </div>
+      <!-- 
             <div class="social">
                 <br>
             <br>
@@ -483,9 +710,9 @@
             <br>
             </div> -->
 
-        </div>
+    </div>
 
-    </footer>
+  </footer>
 
 
   <!-- Script principal — chargé en fin de body pour ne pas bloquer le rendu -->
