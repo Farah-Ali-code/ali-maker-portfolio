@@ -9,40 +9,7 @@
    ============================================================ */
 
 
-/* ─────────────────────────────────────────────
-   1. HERO IMAGE
-   L'image n'est pas mise directement en CSS
-   pour pouvoir détecter quand elle est chargée
-   et déclencher l'animation de dézoom (.loaded).
-   ───────────────────────────────────────────── */
-(function initHero() {
-  const HERO_URL = 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1600&q=85';
-  const heroDiv = document.getElementById('heroImg');
 
-  // On applique le background immédiatement (peut utiliser le cache navigateur)
-  heroDiv.style.backgroundImage = `url('${HERO_URL}')`;
-
-  // On crée un Image() pour surveiller le chargement réel
-  const img = new Image();
-  img.onload = () => heroDiv.classList.add('loaded');  // déclenche le dézoom CSS
-  img.src = HERO_URL;
-})();
-
-
-/* ─────────────────────────────────────────────
-   2. NAVIGATION — OPAQUE AU SCROLL
-   La nav est transparente sur le hero.
-   Dès que l'utilisateur scrolle de plus de 60px,
-   on ajoute .scrolled qui applique le fond flou.
-   ───────────────────────────────────────────── */
-(function initNav() {
-  const navbar = document.getElementById('navbar');
-  const THRESHOLD = 60;  // pixels de scroll avant d'activer le fond
-
-  window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > THRESHOLD);
-  });
-})();
 
 
 
@@ -255,10 +222,8 @@ if(y < limitHauteduBas || y > limitBasseDuHaut  ){
   let pourcentageDeLaZONE;
   if( y < limitHauteduBas){
        pourcentageDeLaZONE= y/limitHauteduBas;
-       console.log(pourcentageDeLaZONE)
   }else{
        pourcentageDeLaZONE= (y-limitBasseDuHaut)/ (canvas.height-limitBasseDuHaut);
-       console.log(pourcentageDeLaZONE)
   }
     // [0,2] a priorit
   if( Math.random()*pourcentageDeLaZONE*2  > 1-intensity){
@@ -337,3 +302,175 @@ window.addEventListener('resize', draw);
 draw();
 
 
+ const CONFIG = {
+      orbes: {
+        quantite: 15,
+        dispersion: 0.12,
+        etendueVerticale: 2.5,
+        tailleMinimale: 0.15,
+        variationTaille: 0.70,
+        opaciteCoeur: 0.65,
+        opaciteMilieu: 0.22
+      },
+      animation: {
+        fluiditeScroll: 0.07,
+        intensiteParallaxe: 0.4,
+        vitesseBase: 1.03,
+        multiplicateurVitesse: 2.2
+      },
+      grille: { colonnes: 3 },
+      palette: [
+        { hue: 158, saturation: 65, lightness: 22 },
+        { hue: 258, saturation: 70, lightness: 22 },
+        { hue: 158, saturation: 100, lightness: 8 },
+        { hue: 252, saturation: 75, lightness: 11 },
+      ]
+    };
+
+    const sectionBackground = document.getElementById('section-arriere-plan');
+    const canvasElement = document.getElementById('canvas-brouillard');
+    const contexteCanvas = canvasElement.getContext('2d', { alpha: false });
+
+    function obtenirCouleurInterpolee(ratioProgression) {
+      const indexSegment = ratioProgression * (CONFIG.palette.length - 1);
+      const indexCouleurBase = Math.min(Math.floor(indexSegment), CONFIG.palette.length - 2);
+      const fractionRestante = indexSegment - indexCouleurBase;
+
+      const couleurDepart = CONFIG.palette[indexCouleurBase];
+      const couleurArrivee = CONFIG.palette[indexCouleurBase + 1];
+
+      return {
+        hue: couleurDepart.hue + (couleurArrivee.hue - couleurDepart.hue) * fractionRestante,
+        saturation: couleurDepart.saturation + (couleurArrivee.saturation - couleurDepart.saturation) * fractionRestante,
+        lightness: couleurDepart.lightness + (couleurArrivee.lightness - couleurDepart.lightness) * fractionRestante
+      };
+    }
+
+    // NOUVEAU : Fonction de pré-rendu. On dessine le dégradé sur un canvas invisible.
+    function creerTextureOrbe(couleur) {
+      const offscreenCanvas = document.createElement('canvas');
+      const tailleTexture = 512; // Résolution fixe pour le dégradé pré-calculé
+      offscreenCanvas.width = tailleTexture;
+      offscreenCanvas.height = tailleTexture;
+      const ctx = offscreenCanvas.getContext('2d');
+      const rayon = tailleTexture / 2;
+
+      const degradeRadial = ctx.createRadialGradient(rayon, rayon, 0, rayon, rayon, rayon);
+      degradeRadial.addColorStop(0, `hsla(${couleur.hue},${couleur.saturation}%,${couleur.lightness}%,${CONFIG.orbes.opaciteCoeur})`);
+      degradeRadial.addColorStop(0.5, `hsla(${couleur.hue},${couleur.saturation}%,${couleur.lightness}%,${CONFIG.orbes.opaciteMilieu})`);
+      degradeRadial.addColorStop(1, `hsla(${couleur.hue},${couleur.saturation}%,${couleur.lightness}%,0)`);
+
+      ctx.fillStyle = degradeRadial;
+      ctx.fillRect(0, 0, tailleTexture, tailleTexture);
+
+      return offscreenCanvas; // Retourne l'image toute prête
+    }
+
+    function genererOrbesLumineux() {
+      return Array.from({ length: CONFIG.orbes.quantite }, (_, index) => {
+        const ratioDeProgression = index / (CONFIG.orbes.quantite - 1);
+        const variationAleatoire = (Math.random() - 0.5) * CONFIG.orbes.dispersion * 2;
+        const vitesseParallaxe = Math.max(CONFIG.animation.vitesseBase, ratioDeProgression + variationAleatoire) * CONFIG.animation.multiplicateurVitesse;
+        
+        const indexColonne = index % CONFIG.grille.colonnes;
+        const indexLigne = Math.floor(index / CONFIG.grille.colonnes);
+        
+        const positionRelativeX = (indexColonne + 0.5) / CONFIG.grille.colonnes + (Math.random() - 0.5) * 0.25;
+        const positionRelativeY = ((indexLigne + 0.5) / Math.ceil(CONFIG.orbes.quantite / CONFIG.grille.colonnes)) * CONFIG.orbes.etendueVerticale + (Math.random() - 0.5) * 0.25;
+
+        const couleurCalculee = obtenirCouleurInterpolee(Math.random());
+        // On génère la texture unique pour cet orbe
+        const texturePreRendue = creerTextureOrbe(couleurCalculee);
+
+        return {
+          centreX: Math.max(0.05, Math.min(0.95, positionRelativeX)),
+          centreY: Math.max(0.05, positionRelativeY),
+          rayonRelatif: CONFIG.orbes.tailleMinimale + Math.random() * CONFIG.orbes.variationTaille,
+          vitesseParallaxe,
+          texture: texturePreRendue // On stocke l'image pré-calculée
+        };
+      });
+    }
+
+    const listeOrbes = genererOrbesLumineux();
+    let defilementLisseActuel = window.scrollY;
+    let frameDemandee = false;
+    let sectionVisible = true; // Variable pour vérifier si la section est à l'écran
+
+    function redimensionnerCanvas() {
+      canvasElement.width = sectionBackground.offsetWidth;
+      canvasElement.height = sectionBackground.offsetHeight;
+      if (sectionVisible) dessinerOrbes(); 
+    }
+
+    function dessinerOrbes() {
+      const largeurCanvas = canvasElement.width;
+      const hauteurCanvas = canvasElement.height;
+      const limiteHauteSection = sectionBackground.offsetTop;
+      const defilementRelatif = defilementLisseActuel - limiteHauteSection;
+
+      contexteCanvas.fillStyle = '#0a0d12';
+      contexteCanvas.fillRect(0, 0, largeurCanvas, hauteurCanvas);
+
+      listeOrbes.forEach(orbe => {
+        const decalageVertical = defilementRelatif * orbe.vitesseParallaxe * CONFIG.animation.intensiteParallaxe;
+        const positionPixelX = orbe.centreX * largeurCanvas;
+        const positionPixelY = (orbe.centreY * hauteurCanvas) - decalageVertical;
+        const rayonPixel = orbe.rayonRelatif * Math.max(largeurCanvas, hauteurCanvas);
+
+        // Si l'orbe sort de l'écran, on l'ignore (Culling)
+        if (positionPixelY + rayonPixel < 0 || positionPixelY - rayonPixel > hauteurCanvas) return;
+
+        // NOUVEAU : On utilise drawImage pour copier la texture pré-calculée. 
+        // Le GPU fait ça instantanément.
+        contexteCanvas.drawImage(
+          orbe.texture, 
+          positionPixelX - rayonPixel, 
+          positionPixelY - rayonPixel, 
+          rayonPixel * 2, 
+          rayonPixel * 2
+        );
+      });
+    }
+
+    function boucleAnimation() {
+      // Si la section n'est pas à l'écran, on coupe tout
+      if (!sectionVisible) {
+        frameDemandee = false;
+        return;
+      }
+
+      const differenceScroll = window.scrollY - defilementLisseActuel;
+      
+      if (Math.abs(differenceScroll) > 0.1) {
+        defilementLisseActuel += differenceScroll * CONFIG.animation.fluiditeScroll;
+        dessinerOrbes();
+        requestAnimationFrame(boucleAnimation);
+      } else {
+        frameDemandee = false;
+      }
+    }
+
+    // NOUVEAU : Intersection Observer pour éteindre l'animation si on ne la regarde pas
+    const observateurVisibilite = new IntersectionObserver((entrees) => {
+      sectionVisible = entrees[0].isIntersecting;
+      if (sectionVisible && !frameDemandee) {
+        frameDemandee = true;
+        requestAnimationFrame(boucleAnimation);
+      }
+    }, { threshold: 0 }); // threshold: 0 signifie qu'il se déclenche dès qu'un pixel entre/sort
+
+    observateurVisibilite.observe(sectionBackground);
+
+    window.addEventListener('scroll', () => {
+      if (sectionVisible && !frameDemandee) {
+        frameDemandee = true;
+        requestAnimationFrame(boucleAnimation);
+      }
+    });
+
+    redimensionnerCanvas();
+    window.addEventListener('resize', redimensionnerCanvas);
+    
+    frameDemandee = true;
+    boucleAnimation();
