@@ -198,20 +198,8 @@ nav {
   white-space: nowrap;
 }
 
-.status-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--neon-green);
-  box-shadow: 0 0 8px var(--neon-green);
-  animation: pulse 2.4s ease-in-out infinite;
-}
 
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
-}
-
+*
 /* ─────────────────────────────────────────────
    VERSION MOBILE (RESPONSIVE)
 ───────────────────────────────────────────── */
