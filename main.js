@@ -302,17 +302,17 @@ draw();
 /*
 ====================================================================================================================================================================================
 
-                                                            C   U   B   I   C         B   A   C   K   G   R   O   U   N   D
+                                                          G R A D I E N T       B G
 ====================================================================================================================================================================================
 */
 
  const CONFIG = {
       orbes: {
-        quantite: 15,
+        quantite: 12,
         dispersion: 0.12,
         etendueVerticale: 2.5,
-        tailleMinimale: 0.15,
-        variationTaille: 0.70,
+        tailleMinimale: 0.25,
+        variationTaille: 0.5,
         opaciteCoeur: 0.65,
         opaciteMilieu: 0.22
       },
@@ -389,7 +389,7 @@ draw();
         return {
           centreX: Math.max(0.05, Math.min(0.95, positionRelativeX)),
           centreY: Math.max(0.05, positionRelativeY),
-          rayonRelatif: CONFIG.orbes.tailleMinimale + Math.random() * CONFIG.orbes.variationTaille,
+          rayonRelatif: (CONFIG.orbes.tailleMinimale + Math.random() * CONFIG.orbes.variationTaille)*0.5,
           vitesseParallaxe,
           texture: texturePreRendue // On stocke l'image pré-calculée
         };
