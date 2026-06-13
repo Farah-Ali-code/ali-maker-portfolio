@@ -30,32 +30,29 @@
        ═══════════════════════════════════════ -->
   <nav id="navbar">
 
-    <!-- Logo / identité -->
-    <div class="nav-brand"><span>~/</span>ali.dev</div>
+  <div class="nav-brand"><span>~/</span>ali.dev</div>
 
-    <!-- Liens principaux avec séparateurs // -->
-    <ul class="nav-links">
-      <li><span class="nav-sep">//</span></li>
-      <li><a href="#hero">Home</a></li>
-      <li><span class="nav-sep">//</span></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><span class="nav-sep">//</span></li>
-      <li><a href="#shcool-section">shcool-section</a></li>
-      <li><span class="nav-sep">//</span></li>
-      <li><a href="#gallery">carousel</a></li>
-      <li><span class="nav-sep">//</span></li>
-      <li><a href="#process">parcours</a></li>
-      <li><span class="nav-sep">//</span></li>
-      <li><a href="#reseaux">Contact</a></li>
-      <li><span class="nav-sep">//</span></li>
-    </ul>
+  <ul class="nav-links">
+    <li class="nav-sep">//</li>
+    <li><a href="#hero">Home</a></li>
+    <li class="nav-sep">//</li>
+    <li><a href="#projects">Projects</a></li>
+    <li class="nav-sep">//</li>
+    <li><a href="#shcool-section">shcool-section</a></li>
+    <li class="nav-sep">//</li>
+    <li><a href="#gallery">carousel</a></li>
+    <li class="nav-sep">//</li>
+    <li><a href="#process">parcours</a></li>
+    <li class="nav-sep">//</li>
+    <li><a href="#reseaux">Contact</a></li>
+    <li class="nav-sep">//</li>
+  </ul>
 
-    <!-- Indicateur de statut (point vert animé) -->
-    <div class="nav-status">
-      student · making things
-    </div>
+  <div class="nav-status">
+    <span class="status-dot"></span> student · making things
+  </div>
 
-  </nav>
+</nav>
 
 
   <!-- ═══════════════════════════════════════
@@ -125,7 +122,8 @@
 
         <!-- Photo du projet — remplacer src par ta photo -->
         <div class="proj-photo">
-          <img src="assets/img/tiny-renderer.png" alt="PCB OpenTherm" loading="lazy">
+          <img class="bg-img" src="assets/img/tiny-renderer.png" alt="PCB OpenTherm" loading="lazy">
+           <img class="fg-img" src="assets/img/tiny-renderer.png" alt="PCB OpenTherm" loading="lazy">
           <div class="proj-photo-num">01 &middot; hardware</div>
         </div>
 
@@ -162,41 +160,50 @@
 
 
       <!-- ── Projet 02 — VIOLET (inversé) ── -->
-      <div class="project-row p-violet flip reveal">
+          <div class="project-row p-violet reveal">
         <div class="blur"></div>
-
         <div class="proj-photo">
-          <img src="assets/img/documentation-soulserv.png" alt="Technical documentation and web porting" loading="lazy">
-          <div class="proj-photo-num">02 &middot; internship</div>
+            <img class="bg-img" src="assets/img/documentation-soulserv.png" alt="" aria-hidden="true" loading="lazy">
+            
+            <img class="fg-img" src="assets/img/documentation-soulserv.png" alt="Technical documentation and web porting" loading="lazy">
+            
+            <div class="proj-photo-num">02 &middot; internship</div>
         </div>
 
         <div class="proj-content">
-          <div>
-            <div class="proj-header">
-              <div class="proj-name">Internship: Soulserv</div>
-              <span class="proj-type">Web & Documentation</span>
+            <div>
+                <div class="proj-header">
+                    <div class="proj-name">Internship: Soulserv</div>
+                    <span class="proj-type">Web & Documentation</span>
+                </div>
+                
+                <p class="proj-desc">
+                    Second-year IT degree internship at the start-up Soulserv.
+                    Reverse engineering mission focused on creating comprehensive technical documentation
+                    and porting websites from a V1 to a V2 using an internal tool.
+                </p>
+                
+                <div class="proj-specs">
+                    <div class="spec-item"><strong>Company</strong>Start-up Soulserv</div>
+                    <div class="spec-item"><strong>Duration</strong>~2 months</div>
+                    <div class="spec-item"><strong>Mission 1</strong>Comprehensive tech doc</div>
+                    <div class="spec-item"><strong>Mission 2</strong>Web porting (V1 &rarr; V2)</div>
+                    <div class="spec-item"><strong>Method</strong>Reverse engineering</div>
+                </div>
             </div>
-            <p class="proj-desc">
-              Second-year IT degree internship at the start-up Soulserv.
-              Reverse engineering mission focused on creating comprehensive technical documentation
-              and porting websites from a V1 to a V2 using an internal tool.
-            </p>
-            <div class="proj-specs">
-              <div class="spec-item"><strong>Company</strong>Start-up Soulserv</div>
-              <div class="spec-item"><strong>Duration</strong>~2 months</div>
-              <div class="spec-item"><strong>Mission 1</strong>Comprehensive tech doc</div>
-              <div class="spec-item"><strong>Mission 2</strong>Web porting (V1 &rarr; V2)</div>
-              <div class="spec-item"><strong>Method</strong>Reverse engineering</div>
+            
+            <div class="proj-tags">
+                <span class="tag">Web Porting</span>
+                <span class="tag">Documentation</span>
+                <span class="tag">Internal Tools</span>
+                <span class="tag">Reverse Eng.</span>
             </div>
-          </div>
-          <div class="proj-tags">
-            <span class="tag">Web Porting</span>
-            <span class="tag">Documentation</span>
-            <span class="tag">Internal Tools</span>
-            <span class="tag">Reverse Eng.</span>
-          </div>
         </div>
-      </div>
+        
+        
+    </div>
+        
+        
 
 
       <!-- ── Projet 03 — AMBRE ── -->
@@ -205,7 +212,9 @@
 
         <div class="proj-photo">
           <a href="https://farah-ali-code.github.io/r4a10-tp-api-2026-battisni-farahal/">
-            <img src="assets/img/tp-api.png" alt="Movie Map Explorer Interface" loading="lazy">
+
+                      <img class="bg-img" src="assets/img/tp-api.png" alt="PCB OpenTherm" loading="lazy">
+           <img class="fg-img" src="assets/img/tp-api.png"  alt="PCB OpenTherm" loading="lazy">
           </a>
           <div class="proj-photo-num">03 &middot; web development</div>
         </div>

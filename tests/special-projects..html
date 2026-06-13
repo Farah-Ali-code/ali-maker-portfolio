@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carte Projet avec Effets Visuels</title>
+    <style>
+        /* Variables de test (à remplacer par tes propres variables si tu en as déjà) */
+        :root {
+            --surface: #110A30;
+            --neon-violet: #b44bff;
+            --pc: #b44bff; /* Couleur principale de la carte */
+            --pc-dim: rgba(180, 75, 255, 0.15);
+            --pc-glow: rgba(180, 75, 255, 0.5);
+            --pc-border: rgba(180, 75, 255, 0.3);
+            --text-main: #ffffff;
+            --text-sub: #a3a0b5;
+            --text-ghost: #6a6588;
+            --display: 'Segoe UI', sans-serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: var(--display);
+            background-color: #050214;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* ─── CONTENEUR PRINCIPAL DE LA CARTE ─── */
+        .project-row {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 800px;
+            background: var(--surface);
+            background: linear-gradient(0deg, hsl(from var(--pc) h s l /0.1) 0%, hsl(from var(--pc) h s l /0.05) 100%);
+            overflow: hidden;
+            position: relative;
+            border-radius: 8px; /* Optionnel : pour adoucir les angles */
+            transition: border-color .3s, transform .3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        /* Trait de couleur en haut de la carte */
+        .project-row::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--pc, var(--neon-violet)), transparent);
+            z-index: 10;
+        }
+
+        /* ─── ZONE DE LA PHOTO ─── */
+        .proj-photo {
+            position: relative;
+            width: 100%;
+            height: 350px; /* HAUTEUR FIXE GARANTIE */
+            background: #08041f;
+            overflow: hidden;
+        }
+
+        /* Image 1 : Arrière-plan flouté pour combler le vide */
+        .proj-photo .bg-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: blur(20px) brightness(0.3) saturate(0.5);
+            transform: scale(1.15);
+            z-index: 1;
+        }
+
+        /* Image 2 : Image nette au premier plan avec tes filtres */
+        .proj-photo .fg-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: saturate(.7) brightness(.82);
+            transition: filter .4s, transform .5s;
+            z-index: 2;
+        }
+
+        /* Animation au survol */
+        .project-row:hover .proj-photo .fg-img {
+            filter: saturate(1) brightness(1);
+            transform: scale(1.03);
+        }
+
+        /* Overlay coloré sur la photo */
+        .proj-photo::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--pc-dim) 0%, transparent 60%);
+            mix-blend-mode: screen;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        /* Numéro de projet en bas à gauche de la photo */
+        .proj-photo-num {
+            position: absolute;
+            bottom: 12px;
+            left: 14px;
+            font-size: .65rem;
+            letter-spacing: .2em;
+            color: var(--pc, var(--neon-violet));
+            text-transform: uppercase;
+            text-shadow: 0 0 10px var(--pc-glow);
+            z-index: 4;
+        }
+
+        /* ─── ZONE DE TEXTE ─── */
+        .proj-content {
+            position: relative;
+            padding: 2.2rem 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            z-index: 1;
+        }
+
+        .proj-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            gap: 1rem;
+            flex-wrap: wrap; /* Sécurité si le titre est long sur mobile */
+        }
+
+        .proj-name {
+            font-family: var(--display);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: -.01em;
+        }
+
+        .proj-type {
+            font-size: .62rem;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border: 1px solid var(--pc, var(--neon-violet));
+            color: var(--pc, var(--neon-violet));
+            flex-shrink: 0;
+            background: var(--pc-dim);
+        }
+
+        .proj-desc {
+            font-size: .83rem;
+            line-height: 1.9;
+            color: var(--text-sub);
+            margin-bottom: 1.6rem;
+            flex: 1;
+        }
+
+        /* Tableau de specs techniques */
+        .proj-specs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 16px;
+            margin-bottom: 1.4rem;
+            padding: 1rem;
+            background: rgba(5, 1, 18, .5);
+            border-left: 2px solid var(--pc, var(--neon-violet));
+        }
+
+        .spec-item {
+            font-size: .7rem;
+            color: var(--text-ghost);
+        }
+
+        .spec-item strong {
+            color: var(--pc, var(--neon-violet));
+            font-weight: 500;
+            display: block;
+            font-size: .64rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            margin-bottom: 1px;
+        }
+
+        /* Tags technos en bas de carte */
+        .proj-tags {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            font-size: .65rem;
+            padding: 3px 10px;
+            background: var(--pc-dim);
+            border: 1px solid var(--pc-border);
+            color: var(--pc);
+            letter-spacing: .06em;
+            text-transform: uppercase;
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 600px) {
+            .proj-photo {
+                height: 250px;
+            }
+            .proj-content {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="project-row p-violet reveal">
+        
+        <div class="proj-photo">
+            <img class="bg-img" src="../assets/img/documentation-soulserv.png" alt="" aria-hidden="true" loading="lazy">
+            
+            <img class="fg-img" src="../assets/img/documentation-soulserv.png" alt="Technical documentation and web porting" loading="lazy">
+            
+            <div class="proj-photo-num">02 &middot; internship</div>
+        </div>
+
+        <div class="proj-content">
+            <div>
+                <div class="proj-header">
+                    <div class="proj-name">Internship: Soulserv</div>
+                    <span class="proj-type">Web & Documentation</span>
+                </div>
+                
+                <p class="proj-desc">
+                    Second-year IT degree internship at the start-up Soulserv.
+                    Reverse engineering mission focused on creating comprehensive technical documentation
+                    and porting websites from a V1 to a V2 using an internal tool.
+                </p>
+                
+                <div class="proj-specs">
+                    <div class="spec-item"><strong>Company</strong>Start-up Soulserv</div>
+                    <div class="spec-item"><strong>Duration</strong>~2 months</div>
+                    <div class="spec-item"><strong>Mission 1</strong>Comprehensive tech doc</div>
+                    <div class="spec-item"><strong>Mission 2</strong>Web porting (V1 &rarr; V2)</div>
+                    <div class="spec-item"><strong>Method</strong>Reverse engineering</div>
+                </div>
+            </div>
+            
+            <div class="proj-tags">
+                <span class="tag">Web Porting</span>
+                <span class="tag">Documentation</span>
+                <span class="tag">Internal Tools</span>
+                <span class="tag">Reverse Eng.</span>
+            </div>
+        </div>
+        
+        
+    </div>
+
+    
+
+</body>
+</html>
