@@ -1246,7 +1246,8 @@ new cards
 /* --- Disposition des Tags en Lignes --- */
 .tags-layout {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap:wrap;
   gap: 12px;
 }
 
@@ -1288,10 +1289,11 @@ new cards
   text-transform: uppercase;
   white-space: nowrap;
   font-family: system-ui, sans-serif;
+  width: fit-content;
 }
 
 .tag-tech {
-  width: fit-content;
+  
   /* Un cyan plus doux, tournant légèrement vers l'eau (Teal) */
   background: rgba(77, 208, 225, 0.1);
   color: #4dd0e1;
@@ -1307,12 +1309,7 @@ new cards
   box-shadow: inset 0 0 15px rgba(179, 136, 255, 0.3); /* Ombre corrigée avec la bonne couleur */
 }
 @media (max-width: 768px) {
-  .tags-layout {
-  display: flex;
-  flex-direction: row;
-  gap: 12px;
-  align-items: flex-end;
-}
+
 .tags-row {
   display: flex;
   flex-direction: column;
