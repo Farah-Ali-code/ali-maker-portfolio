@@ -16,3 +16,6 @@ Because I enjoy making shaders, most of the backgrounds on this site are procedu
 
 - **Documentation:** I need to add a technical explanation detailing how to add new sections within the cubic background component.
 - **Licenses:** I have not yet finalized the research for third-party image licenses. However, any original image created by me is completely free to use for any purpose. A formal open-source license will be added to the repository soon.
+-sort images
+-adde personal project from the original portfolio 
+-make the carroussel better when in mobile ratio
