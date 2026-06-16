@@ -82,14 +82,22 @@
 const container = document.querySelector('.gallery-scroll-container');
 const originalContent = container.innerHTML;
 
-container.innerHTML = originalContent + originalContent + originalContent;
+// On détecte si l'utilisateur possède un pointeur précis (souris/trackpad)
+let isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+if (isDesktop) {
+  container.innerHTML = originalContent + originalContent + originalContent;
+}
+
 
 // 2. Variables du moteur physique
 let currentX = -33.3333; // Position de départ (Set central)
 let scrollSpeed = 0;     // Vitesse actuelle (0 = à l'arrêt)
 
+
 //sensible au frsh rate du nav 
 function scrollLoop() {
+  if (!isDesktop) return;
   // On ajoute la vitesse à la position
   currentX += scrollSpeed;
 
@@ -111,7 +119,9 @@ function scrollLoop() {
 }
 
 // On lance le moteur
-scrollLoop();
+if (isDesktop) {
+  scrollLoop();
+}
 
 let baseOpacity = 1;
 let speedFactor = 0.025;
@@ -158,6 +168,12 @@ controllerLeft.addEventListener('mouseleave', () => {
 
 
 
+window.addEventListener('resize', () => {
+  let newIsDesktop = window.matchMedia('(min-width: 1025px)').matches;
+  if (newIsDesktop !== isDesktop) {
+    location.reload(); 
+  }
+});
 
 /*
 ====================================================================================================================================================================================

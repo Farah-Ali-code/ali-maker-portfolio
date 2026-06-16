@@ -394,6 +394,7 @@ h1 {
    à l'écran pendant qu'on scrolle. JS lit la
    progression du scroll et déplace la track.
    ───────────────────────────────────────────── */
+
 #gallery {
   padding: 6rem 0;
 }
@@ -417,7 +418,7 @@ h1 {
      on peut rester sur 30vw ou 40vw selon l'effet voulu */
   width: 40vw;
   flex-shrink: 0;
-  height: 50vh;
+  height: auto ;
   /* Définit une hauteur fixe ou auto selon tes images */
   margin: 0 10px;
   /* Petit espace entre les photos */
@@ -427,9 +428,10 @@ h1 {
 
 .galery-element img {
   width: 90%;
-  height: 90%;
+  height: auto;
   /* Remis à 100% pour remplir le cadre */
-  object-fit: cover;
+  padding-bottom :10%;
+  object-fit: scale-down;
   display: block;
 }
 
@@ -479,7 +481,7 @@ h1 {
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(to top, rgba(5, 1, 18, .92) 0%, transparent 100%);
+  background: transparent;
   z-index: 2;
   transform: translateY(12px);
 
@@ -529,6 +531,72 @@ h1 {
   line-height: 1.8;
 }
 
+/* ==========================================================================
+   RESPONSIVE : APPAREILS TACTILES (Sans souris)
+   ========================================================================== */
+/* 1. TABLETTES (Écrans de moins de 1024px) */
+@media (max-width: 1024px) {
+  .galery-element {
+    /* L'image prend 60% de l'écran (on en voit environ 1.5 à la fois) */
+    width: 60vw; 
+  }
+}
+
+/* 2. SMARTPHONES (Écrans de moins de 768px) */
+@media (max-width: 768px) {
+  .galery-element {
+    /* L'image prend presque tout l'écran, parfait pour le mobile */
+    width: 85vw; 
+    /* On réduit légèrement l'espacement entre les images pour les petits écrans */
+    margin: 0 8px; 
+  }
+
+  /* On en profite pour réduire les marges du titre qui prennent trop de place sur mobile */
+  .gallery-header {
+    padding: 0 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* On ajuste un peu la taille du texte du sous-titre si besoin */
+  .panel-title {
+    font-size: 1rem;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  /* 5. Afficher les auteurs en permanence sur mobile (car pas de survol) */
+  .panel-caption {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    
+    /* On annule le top: 90% et le height: 20% qui écrasent le texte sur mobile */
+    top: auto;
+    bottom: 0;
+    height: auto;
+    
+    /* On ajoute un peu d'espace interne pour que le texte respire */
+    padding: 30px 15px 15px 15px; 
+  }
+
+  /* 6. On s'assure que l'image laisse assez de place en bas */
+  .galery-element img {
+    padding-bottom: 60px; /* On remplace les 10% par une valeur fixe plus sûre */
+  }
+
+  .gallery-scroll {
+    display:none;
+  }
+
+/* 2. LE PARENT (La fenêtre de tir) */
+  .gallery-wrapper {
+    width: 100%; /* Bloqué à la largeur de l'écran */
+    overflow-x: auto ; /* C'est LUI qui gère le scroll horizontal */
+      scrollbar-width: none; /* Masque la barre de défilement (Firefox) */
+    scroll-snap-type: x mandatory; /* Effet magnétique */
+    -webkit-overflow-scrolling: touch; /* Fluidité sur iOS */
+  }
+
+}
 
 /* ─────────────────────────────────────────────
    7. PROJECTS
@@ -847,7 +915,7 @@ h1 {
    et un contenu texte à droite.
    ───────────────────────────────────────────── */
 #process {
-  padding: 6rem 3rem;
+  padding: 15vw 5vw;
 }
 
 .timeline {
@@ -872,8 +940,8 @@ h1 {
 /* Item = grille 2 col (point | texte) */
 .tl-item {
   display: grid;
-  grid-template-columns: 30px 1fr;
-  gap: 0 2rem;
+  grid-template-columns: 5vw 1fr;
+  gap: 0 0.5vw;
   padding-bottom: 2.8rem;
 }
 
@@ -930,6 +998,22 @@ h1 {
   color: var(--text-sub);
 }
 
+@media (max-width: 800px) {
+  .timeline {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  margin-left: 6%;
+  position: relative;
+}
+
+.tl-desc {
+  font-size: .5srem;
+  line-height: 1.85;
+  color: var(--text-sub);
+}
+
+}
 
 /*─────────────────────────────────────────────
 card and background
@@ -1207,6 +1291,7 @@ new cards
 }
 
 .tag-tech {
+  width: fit-content;
   /* Un cyan plus doux, tournant légèrement vers l'eau (Teal) */
   background: rgba(77, 208, 225, 0.1);
   color: #4dd0e1;
@@ -1220,6 +1305,30 @@ new cards
   color: #b388ff;
   border: 1px solid rgba(179, 136, 255, 0.4); /* Opacité réduite à 0.4 */
   box-shadow: inset 0 0 15px rgba(179, 136, 255, 0.3); /* Ombre corrigée avec la bonne couleur */
+}
+@media (max-width: 768px) {
+  .tags-layout {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  align-items: flex-end;
+}
+.tags-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.tags-list {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 8px;
+    overflow-x: auto;
+      scrollbar-width: none; /* Masque la barre de défilement (Firefox) */
+    padding-bottom: 2px;
+}
+
 }
 
 /* ─────────────────────────────────────────────
@@ -1242,45 +1351,53 @@ new cards
   border-bottom-left-radius: 35%;
   border-bottom-right-radius: 35%;
 }
-
-#reseaux>div {
+/* Le conteneur principal des réseaux */
+#reseaux > div {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   justify-content: space-evenly;
-  width: 95%;
-  padding: 2rem;
-  min-height: 300px;
+  align-items: center; /* Centre les icônes verticalement */
+  gap: 3rem; /* Remplace les margin gauche/droite et gère l'espacement proprement */
+  width: 100%;
+  padding: 3rem 1rem;
+  /* J'ai retiré min-height et max-height pour laisser le footer respirer naturellement */
+}
+
+/* Les conteneurs d'icônes */
+.reseau {
+  /* clamp(min, idéal, max) permet à l'icône de grandir de façon contrôlée */
+  width: clamp(50px, 8vw, 80px); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* Le lien englobant */
+.reseau > a {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 0.2s ease-in-out; /* Prépare une animation fluide */
+}
+
+/* L'image elle-même */
+.reseau img {
+  width: 100%;
+  height: auto;
+  object-fit: contain; /* Sécurité absolue : force le maintien du ratio original */
+  display: block; /* Supprime l'espace fantôme sous les images */
+  filter: invert(100%); /* Ton filtre actuel pour les passer en blanc */
+}
+
+/* Petit bonus : un effet de survol pour faire réagir les icônes */
+.reseau > a:hover {
+  transform: translateY(-5px) scale(1.1);
 }
 
 #reseaux>div>div {
   width: 10%;
 }
 
-.reseau {
-  width: 10%;
-  height: auto;
-  margin-left: 2%;
-  margin-right: 2%;
-  display: flex;
-  align-items: center;
-  text-align: center;
-}
 
-.reseau>a {
-  height: auto;
-  margin-left: 2%;
-  margin-right: 2%;
-  display: flex;
-  align-items: center;
-  text-align: center;
-}
-
-.reseau img {
-  width: 100%;
-  height: auto;
-  margin-bottom: 0.5rem;
-}
 
 .reseau p {
   margin: 0;
