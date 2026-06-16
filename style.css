@@ -359,22 +359,7 @@ h1 {
    5. UTILITAIRES PARTAGÉS ENTRE SECTIONS
    ───────────────────────────────────────────── */
 
-/* Label de section (// gallery, // projects…) */
-.sec-label {
-  font-size: .68rem;
-  letter-spacing: .3em;
-  text-transform: uppercase;
-  color: var(--neon-blue);
-  margin-bottom: .6rem;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
 
-.sec-label::before {
-  content: '//';
-  color: var(--dim);
-}
 
 /* Titre de section */
 .sec-title {
@@ -384,6 +369,8 @@ h1 {
   font-weight: 700;
   color: var(--text-main);
   letter-spacing: -.01em;
+  padding-top: calc(clamp(3.6rem, 7vw, 5.6rem));
+  padding-left: calc(clamp(3.6rem, 7vw, 5.6rem));
 }
 
 
@@ -1102,9 +1089,9 @@ canvas {
 .slide {
   display: flex;
   width: 100%;
-  justify-content: center; /* Centre les cartes globalement */
-  flex-wrap: wrap; /* PERMET AUX CARTES DE PASSER À LA LIGNE SI MANQUE DE PLACE */
-  gap: 2rem; /* Définit un espace constant entre les cartes (horizontal et vertical) */
+  justify-content: space-evenly;
+  gap: 1.5rem;
+  flex-wrap: wrap; 
 }
 
 .container {
@@ -1126,7 +1113,7 @@ new cards
   position: relative;
   /* width: 380px; <-- SUPPRIMER LA LARGEUR FIXE */
   width: 100%; /* Prend toute la place dispo... */
-  max-width: 380px; /* ...mais ne dépasse jamais 380px */
+  max-width: 420px; /* ...mais ne dépasse jamais 380px */
   border-radius: 8px;
   background: rgba(var(--deep), 0.25);
   backdrop-filter: blur(16px);
@@ -1211,10 +1198,13 @@ new cards
 /* --- Le Contenu --- */
 .card-content {
   position: relative;
+  height: 60%;
+  display:flex;
   z-index: 2;
   padding: 20px 25px 30px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 20px;
 }
 
