@@ -18,3 +18,7 @@ Because I enjoy making shaders, most of the backgrounds on this site are procedu
 - **Licenses:** I have not yet finalized the research for third-party image licenses. However, any original image created by me is completely free to use for any purpose. A formal open-source license will be added to the repository soon.
 -sort images
 -unifie the css 
+
+make it load faster :
+-delete unsued image 
+-delete big ass png 

@@ -1048,7 +1048,7 @@ body {
 .bg {
   position: relative;
   width: 100%;
-  padding: 6rem 1rem;
+  padding: 0 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1078,7 +1078,7 @@ canvas {
   position: absolute;
   left: 0;
   right: 0;
-  height: 15%;
+  height: 10%;
   pointer-events: none;
   z-index: 2;
 }
