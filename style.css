@@ -79,10 +79,7 @@ body {
   /* empêche le scroll horizontal parasite */
 }
 
-section{
-  margin-top : 7%;
-  margin-bottom: 7%;
-}
+
 
 /* ─────────────────────────────────────────────
    2. SCROLLBAR PERSONNALISÉE
@@ -902,7 +899,7 @@ h1 {
    et un contenu texte à droite.
    ───────────────────────────────────────────── */
 #process {
-  padding: 15vw 5vw;
+  padding:  5vw;
 }
 
 .timeline {
@@ -1317,7 +1314,93 @@ new cards
 }
 
 }
+/* ─────────────────────────────────────────────
+   10. cv
+   ───────────────────────────────────────────── */
+/* ═══════════════════════════════════════
+   CARTE CV PERMANENTE (Effet Glassmorphism Intégré)
+   ═══════════════════════════════════════ */
+.cv-card-permanent {
+  width: 100%;
+  max-width: 700px;
+  padding: 3rem;
+  margin: 0 auto;
+  border-radius: 12px;
+  
+  /* Le dégradé intégré DIRECTEMENT dans la carte (Violet -> Sombre -> Cyan) */
+  background: linear-gradient(135deg, rgba(180, 75, 255, 0.12) 0%, rgba(10, 5, 37, 0.4) 50%, rgba(0, 229, 255, 0.08) 100%);
+  
+  /* L'effet de flou qui permet de voir à travers */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  
+  /* L'effet "reflet de verre" sur les bordures */
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  
+  /* Ombre pour détacher la carte du fond noir */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.02);
+}
 
+.cv-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 2.5rem;
+}
+
+.cv-icon {
+  width: 35px;
+  height: 35px;
+  filter: invert(100%);
+}
+
+.cv-links {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cv-item {
+  text-decoration: none;
+  display: block;
+  transition: transform 0.2s;
+}
+
+.cv-tag {
+  width: 100%;
+  text-align: center;
+  padding: 1.2rem !important;
+  font-size: 1.1rem !important;
+  border-radius: 8px !important;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  letter-spacing: 2px;
+}
+
+/* Animations au survol */
+.cv-item:hover {
+  transform: translateX(10px);
+}
+
+.cv-item:hover .cv-tag {
+  background: rgba(77, 208, 225, 0.2);
+  box-shadow: 0 0 15px rgba(77, 208, 225, 0.4);
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  .cv-card-permanent {
+    max-width: 95vw;
+    padding: 2rem 1.5rem;
+  }
+  .cv-header { margin-bottom: 1.5rem; }
+  .project-title { font-size: 1.5rem; }
+  .cv-icon { width: 28px; height: 28px; }
+  .cv-tag { padding: 1rem !important; font-size: 0.95rem !important; }
+}
 /* ─────────────────────────────────────────────
    10. FOOTER
    La courbe concave en haut est un SVG inline
@@ -1383,7 +1466,6 @@ new cards
 #reseaux>div>div {
   width: 10%;
 }
-
 
 
 .reseau p {
@@ -1465,18 +1547,6 @@ new cards
   opacity: 1;
   transform: none;
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 #glitch-canvas {
