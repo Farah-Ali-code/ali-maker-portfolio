@@ -30,33 +30,41 @@
        ═══════════════════════════════════════ -->
   <nav id="navbar">
 
-  <div class="nav-brand"><span>~/</span>ali.dev</div>
+    <div class="nav-brand"><span>~/</span>ali.dev</div>
 
-  <ul class="nav-links">
-    <li class="nav-sep">//</li>
-    <li><a href="#hero">Home</a></li>
-    <li class="nav-sep">//</li>
-    <li><a href="#projects">Projects</a></li>
-    <li class="nav-sep">//</li>
-    <li><a href="#shcool-section">Education</a></li>
-    <li class="nav-sep">//</li>
-    <li><a href="#gallery">inspirations</a></li>
-    <li class="nav-sep">//</li>
-    <li><a href="#process">Background</a></li>
-    <li class="nav-sep">//</li>
-    <li><a href="#cv">cv</a></li>
-    <li class="nav-sep">//</li>
-    <li><a href="#reseaux">Contact</a></li>
-    <li class="nav-sep">//</li>
+    <ul class="nav-links">
+      <li class="nav-sep">//</li>
+      <li><a href="#hero">Accueil</a></li>
+      <li class="nav-sep">//</li>
+      <li><a href="#projects">Projets</a></li>
+      <li class="nav-sep">//</li>
+      <li><a href="#shcool-section">Formation</a></li>
+      <li class="nav-sep">//</li>
+      <li><a href="#gallery">Inspirations</a></li>
+      <li class="nav-sep">//</li>
+      <li><a href="#process">Parcours</a></li>
+      <li class="nav-sep">//</li>
+      <li><a href="#cv">CV</a></li>
+      <li class="nav-sep">//</li>
+      <li><a href="#reseaux">Contact</a></li>
+      <li class="nav-sep">//</li>
+      <!--
     <li class="nav-sep">      \\</li>
     <li><a href="#reseaux">maker</a></li>
     <li class="nav-sep">\\</li>
-  </ul>
+    
+    -->
 
-  <div class="nav-status" >    <a href="index_fr.html">
-  <div class="nav-brand">Fr</div>
+    </ul>
+
+    <div class="nav-status" >
+      <a href="index.html">
+  <div class="nav-brand">En</div>
       </a>
-</nav>
+     
+    </div>
+
+  </nav>
 
 
   <!-- ═══════════════════════════════════════
@@ -72,7 +80,7 @@
     <!-- Image de fond (URL + animation injectées par JS) -->
 
     <img class="hero-image" src="assets/img/my-3d/hero-bg.png">
-    <h2 class="hero-text">ali's maker <br> portfolio</h2>
+    <h2 class="hero-text">le portfolio <br> maker d'ali</h2>
 
 
   </div>
@@ -126,7 +134,7 @@
         <!-- Photo du projet — remplacer src par ta photo -->
         <div class="proj-photo">
           <img class="bg-img" src="assets/img/special-proj/tiny-renderer.png" alt="PCB OpenTherm" loading="lazy">
-           <img class="fg-img" src="assets/img/special-proj//tiny-renderer.png" alt="PCB OpenTherm" loading="lazy">
+          <img class="fg-img" src="assets/img/special-proj//tiny-renderer.png" alt="PCB OpenTherm" loading="lazy">
           <div class="proj-photo-num">01 &middot; hardware</div>
         </div>
 
@@ -135,27 +143,31 @@
           <div>
             <div class="proj-header">
               <div class="proj-name">tiny-renderer</div>
-              <span class="proj-type">Software Graphics</span>
+              <span class="proj-type">Programmation Graphique</span>
             </div>
             <p class="proj-desc">
-              Implementation of a 3D software rasterizer from scratch in C++ based on a university course (not from my
-              university ).
-              Built to understand how GPUs work under the hood, covering Bresenham's line drawing, z-buffering,
-              perspective projection, and shading, all without external graphics libraries.
+              Implémentation d'un rastériseur logiciel 3D de A à Z en C++ basé sur un cours universitaire (externe à mon
+              université).
+              Construit pour comprendre de l'intérieur la chaîne de rendu d'images de synthèse (comprenant les étapes
+              d'Application, de Géométrie et de Rastérisation), couvrant l'algorithme de tracé de segment de Bresenham,
+              le z-buffering,
+              la projection en perspective et l'ombrage (shading), le tout sans aucune bibliothèque graphique externe.
             </p>
-            <div class="proj-specs">
-              <div class="spec-item"><strong>Language</strong>C++</div>
-              <div class="spec-item"><strong>Core</strong>Rasterization</div>
-              <div class="spec-item"><strong>Output</strong>TGA Images</div>
-              <div class="spec-item"><strong>Dependencies</strong>None (Std Lib)</div>
-            </div>
+
+              <div class="proj-specs">
+                <div class="spec-item"><strong>Langage</strong>C++</div>
+                <div class="spec-item"><strong>Cœur</strong>Rastérisation</div>
+                <div class="spec-item"><strong>Sortie</strong>Images TGA</div>
+                <div class="spec-item"><strong>Dépendances</strong>Aucune (Biblio Std)</div>
+              </div>
+
           </div>
           <div class="proj-tags">
             <span class="tag">C++</span>
-            <span class="tag">3D Graphics</span>
-            <span class="tag">Mathematics</span>
-            <span class="tag">Algorithms</span>
-            <span class="tag">Rasterization</span>
+            <span class="tag">Graphisme 3D</span>
+            <span class="tag">Mathématiques</span>
+            <span class="tag">Algorithmes</span>
+            <span class="tag">Rastérisation</span>
           </div>
         </div>
 
@@ -163,50 +175,52 @@
 
 
       <!-- ── Projet 02 — VIOLET (inversé) ── -->
-          <div class="project-row p-violet reveal">
+      <div class="project-row p-violet reveal">
         <div class="blur"></div>
         <div class="proj-photo">
-            <img class="bg-img" src="assets/img/special-proj/documentation-soulserv.png" alt="" aria-hidden="true" loading="lazy">
-            
-            <img class="fg-img" src="assets/img/special-proj/documentation-soulserv.png" alt="Technical documentation and web porting" loading="lazy">
-            
-            <div class="proj-photo-num">02 &middot; internship</div>
+          <img class="bg-img" src="assets/img/special-proj/documentation-soulserv.png" alt="" aria-hidden="true"
+            loading="lazy">
+
+          <img class="fg-img" src="assets/img/special-proj/documentation-soulserv.png"
+            alt="Technical documentation and web porting" loading="lazy">
+
+          <div class="proj-photo-num">02 &middot; stage</div>
         </div>
 
         <div class="proj-content">
-            <div>
-                <div class="proj-header">
-                    <div class="proj-name">Internship: Soulserv</div>
-                    <span class="proj-type">Web & Documentation</span>
-                </div>
-                
-                <p class="proj-desc">
-                    Second-year IT degree internship at the startup Soulserv.
-                    Reverse engineering mission focused on creating comprehensive technical documentation
-                    and porting websites from a V1 to a V2 using an internal tool.
-                </p>
-                
-                <div class="proj-specs">
-                    <div class="spec-item"><strong>Company</strong>Start-up Soulserv</div>
-                    <div class="spec-item"><strong>Duration</strong>~2 months</div>
-                    <div class="spec-item"><strong>Mission 1</strong>Comprehensive tech doc</div>
-                    <div class="spec-item"><strong>Mission 2</strong>Web porting (V1 &rarr; V2)</div>
-                    <div class="spec-item"><strong>Method</strong>Reverse engineering</div>
-                </div>
+          <div>
+            <div class="proj-header">
+              <div class="proj-name">Stage : Soulserv</div>
+              <span class="proj-type">Web & Documentation</span>
             </div>
-            
-            <div class="proj-tags">
-                <span class="tag">Web Porting</span>
-                <span class="tag">Documentation</span>
-                <span class="tag">Internal Tools</span>
-                <span class="tag">Reverse Eng.</span>
+
+            <p class="proj-desc">
+              Stage de 2ème année de B.U.T. Informatique au sein de la startup Soulserv.
+              Mission de rétro-ingénierie axée sur la création d'une documentation technique complète
+              et le portage de sites web d'une version 1 à une version 2 à l'aide d'un outil interne.
+            </p>
+
+            <div class="proj-specs">
+              <div class="spec-item"><strong>Entreprise</strong>Start-up Soulserv</div>
+              <div class="spec-item"><strong>Durée</strong>~2 mois</div>
+              <div class="spec-item"><strong>Mission 1</strong>Doc technique complète</div>
+              <div class="spec-item"><strong>Mission 2</strong>Portage web (V1 &rarr; V2)</div>
+              <div class="spec-item"><strong>Méthode</strong>Rétro-ingénierie</div>
             </div>
+          </div>
+
+          <div class="proj-tags">
+            <span class="tag">Portage Web</span>
+            <span class="tag">Documentation</span>
+            <span class="tag">Outils Internes</span>
+            <span class="tag">Rétro-ingénierie</span>
+          </div>
         </div>
-        
-        
-    </div>
-        
-        
+
+
+      </div>
+
+
 
 
       <!-- ── Projet 03 — AMBRE ── -->
@@ -216,8 +230,8 @@
         <div class="proj-photo">
           <a href="https://farah-ali-code.github.io/r4a10-tp-api-2026-battisni-farahal/">
 
-                      <img class="bg-img" src="assets/img/special-proj//tp-api.png" alt="PCB OpenTherm" loading="lazy">
-           <img class="fg-img" src="assets/img/special-proj/tp-api.png"  alt="PCB OpenTherm" loading="lazy">
+            <img class="bg-img" src="assets/img/special-proj//tp-api.png" alt="PCB OpenTherm" loading="lazy">
+            <img class="fg-img" src="assets/img/special-proj/tp-api.png" alt="PCB OpenTherm" loading="lazy">
           </a>
           <div class="proj-photo-num">03 &middot; web development</div>
         </div>
@@ -229,17 +243,16 @@
               <span class="proj-type">Web / APIs</span>
             </div>
             <p class="proj-desc">
-              A novel movie discovery platform blending interactive geographic search with a timeline slider to unearth
-              hidden cinematic gems.
-              Built with a strict MVC architecture using Vanilla JS, integrating TheMovieDB and Leaflet APIs.
-              A collaborative two-person project developed in under two weeks.
+             Une plateforme innovante de découverte de films combinant une recherche géographique interactive avec un curseur chronologique pour dénicher des pépites cinématographiques cachées.
+              Construite avec une architecture MVC stricte en Vanilla JS, intégrant les API TheMovieDB et Leaflet.
+              Un projet collaboratif en binôme développé en moins de deux semaines.
             </p>
             <div class="proj-specs">
-              <div class="spec-item"><strong>Stack</strong>Vanilla JS (No FW)</div>
+              <div class="spec-item"><strong>Stack</strong>Vanilla JS (Sans FW)</div>
               <div class="spec-item"><strong>APIs</strong>TMDB &amp; Leaflet.js</div>
-              <div class="spec-item"><strong>Pattern</strong>MVC Architecture</div>
-              <div class="spec-item"><strong>Timeline</strong>1-2 weeks </div>
-              <div class="spec-item"><strong>Team</strong>2 Developers</div>
+              <div class="spec-item"><strong>Modèle</strong>Architecture MVC</div>
+              <div class="spec-item"><strong>Durée</strong>1-2 semaines </div>
+              <div class="spec-item"><strong>Équipe</strong>2 Développeurs</div>
             </div>
           </div>
           <div class="proj-tags">
@@ -278,29 +291,31 @@
 
           <div class="card-content">
             <div class="text-content">
-              <h2 class="project-title">K NEAREST NEIGHBOR</h2>
-              <h3 class="project-category">CATEGORY : ALGORITHMS</h3>
+              <h2 class="project-title">K PLUS PROCHES VOISINS</h2>
+              <h3 class="project-category">CATÉGORIE : ALGORITHMES</h3>
               <p class="project-description">
-                Group project with <a href="https://favreau.alwaysdata.net/accueil.html" class="lien">Simon</a> to sort news dispatches. Instead of using
-                keywords, we used a relative approach, measuring a new dispatch's closeness to a reference one to meet
-                client needs for accuracy and speed.
+                Projet de groupe avec <a href="https://favreau.alwaysdata.net/accueil.html" class="lien">Simon</a> pour trier
+                des dépêches d'actualité. Au lieu d'utiliser des
+                mots-clés avec une catégorie pré-déterminer, nous avons opté pour une approche relative en mesurant la proximité d'une nouvelle dépêche par rapport à une de référence, afin de répondre aux
+                besoins de précision et de rapidité du client.Ce projet avait pour but de nous introduire a l'intélligence artificielle.
               </p>
             </div>
 
             <div class="tags-layout">
               <div class="tags-row">
                 <div class="tags-list">
-                  <span class="tag tag-tech">Java</span>
-                  <span class="tag tag-tech">Similarity Algorithms</span>
-                  <span class="tag tag-tech">Research & Git</span>
+                 <span class="tag tag-tech">Java</span>
+                  <span class="tag tag-tech">Algorithmes de similarité</span>
+                  <span class="tag tag-tech">IA</span>
+                  <span class="tag tag-tech">Recherche & Git</span>
                 </div>
               </div>
 
               <div class="tags-row">
                 <div class="tags-list">
-                  <span class="tag tag-soft">Interested</span>
-                  <span class="tag tag-soft">Precise</span>
-                  <span class="tag tag-soft">Punctual</span>
+                  <span class="tag tag-soft">Impliqué</span>
+                  <span class="tag tag-soft">Précis</span>
+                  <span class="tag tag-soft">Ponctuel</span>
                 </div>
               </div>
             </div>
@@ -316,26 +331,27 @@
           <div class="card-content">
             <div class="text-content">
               <h2 class="project-title">Pong</h2>
-              <h3 class="project-category">CATEGORY : LOW-LEVEL PROGRAMMING</h3>
+              <h3 class="project-category">CATÉGORIE : PROGRAMMATION BAS NIVEAU</h3>
               <p class="project-description">
-                This game was developed in assembly for the Motorola 6800 processor. It introduced me to low-level programming, memory management, and optimization under hardware constraints. Despite the challenge, I enjoyed the experience and gained a strong interest in graphics-related systems programming.
-
+                Ce jeu a été développé en assembleur pour le processeur Motorola 6800. Il m'a initié à la programmation bas niveau,
+                 à la gestion de la mémoire et à l'optimisation sous contraintes matérielles. 
+                 Malgré la complexité, j'ai beaucoup apprécié l'expérience et développé un vif intérêt pour la programmation système liée au graphisme.
               </p>
             </div>
 
             <div class="tags-layout">
               <div class="tags-row">
                 <div class="tags-list">
-                  <span class="tag tag-tech">Assembly programming</span>
-                  <span class="tag tag-tech">RAM data management</span>
+                  <span class="tag tag-tech">Programmation Assembleur</span>
+                  <span class="tag tag-tech">Gestion des données RAM</span>
                 </div>
               </div>
 
               <div class="tags-row">
                 <div class="tags-list">
-                  <span class="tag tag-soft">Patient</span>
-                   <span class="tag tag-soft">Thorough</span>
-                  <span class="tag tag-soft">Resourceful </span>
+                 <span class="tag tag-soft">Patient</span>
+                  <span class="tag tag-soft">Minutieux</span>
+                  <span class="tag tag-soft">Débrouillard</span>
                 </div>
               </div>
             </div>
@@ -349,27 +365,26 @@
           </div>
           <div class="card-content">
             <div class="text-content">
-              <h2 class="project-title">MERGE SORT</h2>
-              <h3 class="project-category">CATEGORY : ALGORITHMS</h3>
+              <h2 class="project-title">TRI FUSION</h2>
+              <h3 class="project-category">CATÉGORIE : ALGORITHMES</h3>
               <p class="project-description">
-                A sorting algorithm that works recursively, like Russian dolls. It was my first real introduction to
-                recursion—a challenging deep dive into separating what the algorithm actually is versus what I thought
-                it was.
+              Un algorithme de tri qui fonctionne de manière récursive, comme des poupées russes. 
+              Ce fut ma première véritable introduction à la récursivité — une immersion pour dissocier ce qu'est réellement l'algorithme de ce que je pensais qu'il était.
               </p>
             </div>
 
             <div class="tags-layout">
               <div class="tags-row">
                 <div class="tags-list">
-                  <span class="tag tag-tech">Java Functions</span>
-                  <span class="tag tag-tech">Debugging</span>
+                  <span class="tag tag-tech">Java</span>
+                  <span class="tag tag-tech">Débogage</span>
                 </div>
               </div>
 
               <div class="tags-row">
                 <div class="tags-list">
-                  <span class="tag tag-soft">Precise</span>
-                  <span class="tag tag-soft">Attentive</span>
+                  <span class="tag tag-soft">Précis</span>
+                  <span class="tag tag-soft">Attentif</span>
                 </div>
               </div>
             </div>
@@ -377,7 +392,7 @@
         </div>
 
       </div>
-      <div class="sec-title">data-and-admin</div>
+      <div class="sec-title">données-et-admin</div>
       <div class="slide">
         <div class="card futuristic-card">
           <div class="noise detailed-grain"></div>
@@ -387,10 +402,11 @@
           </div>
           <div class="card-content">
             <div class="text-content">
-              <h2 class="project-title">SERVER INSTALLATION</h2>
-              <h3 class="project-category">CATEGORY : SYSADMIN</h3>
+              <h2 class="project-title">INSTALLATION DE SERVEUR</h2>
+              <h3 class="project-category">CATÉGORIE : ADMIN SYSTÈME</h3>
               <p class="project-description">
-                Deployment of an Apache 2 web server linked to a PostgreSQL database accessible remotely by other machines on the local network. The main challenge was the strict configuration of access rules and network privileges in order to secure the database and restrict its exposure to authorized users only.
+                Déploiement d'un serveur Web Apache 2 lié à une base de données PostgreSQL accessible à distance par d'autres machines du réseau local.
+                 L'enjeu principal a été la configuration stricte des règles d'accès et des privilèges réseau afin de sécuriser la base de données et restreindre son exposition aux seuls utilisateurs autorisés.
               </p>
             </div>
 
@@ -404,8 +420,8 @@
 
               <div class="tags-row">
                 <div class="tags-list">
-                  <span class="tag tag-soft">Autonomous</span>
-                  <span class="tag tag-soft">Rigorous</span>
+                 <span class="tag tag-soft">Autonome</span>
+                  <span class="tag tag-soft">Rigoureux</span>
                 </div>
               </div>
             </div>
@@ -421,29 +437,28 @@
 
           <div class="card-content">
             <div class="text-content">
-              <h2 class="project-title">BOWLING DATABASE</h2>
-              <h3 class="project-category">CATEGORY : DATABASE</h3>
+              <h2 class="project-title">BASE DE DONNÉES BOWLING</h2>
+              <h3 class="project-category">CATÉGORIE : BASE DE DONNÉES</h3>
               <p class="project-description">
-  Designed an SQL database schema for a bowling alley based on client specs, 
-  populated it via CSV files, 
-  and implemented automation using triggers to enforce complex business rules (such as preventing overlapping reservations).
+  Conception d'un schéma de base de données SQL pour un bowling selon le cahier des charges client, 
+  intégration des données via des fichiers CSV et automatisation par le biais de déclencheurs (triggers) pour assurer le respect de contraintes complexes 
+  (par exemple, le non-chevauchement des réservations).
 </p>
             </div>
 
             <div class="tags-layout">
               <div class="tags-row">
                 <div class="tags-list">
-                  <span class="tag tag-tech">SQL</span>
-                  <span class="tag tag-tech">Plans (SLR/SEA)</span>
-                  <span class="tag tag-tech">Reports</span>
+                 <span class="tag tag-tech">SQL</span>
+                  <span class="tag tag-tech">Modèles (MCD/MLD)</span>
+                  <span class="tag tag-tech">Rédaction de rapports</span>
                 </div>
               </div>
 
               <div class="tags-row">
                 <div class="tags-list">
-                  <span class="tag tag-soft">Considerate</span>
-                  <span class="tag tag-soft">Careful</span>
-                  <span class="tag tag-soft">Analytical</span>
+                  <span class="tag tag-soft">Soigneux</span>
+                  <span class="tag tag-soft">Analytique</span>
                 </div>
               </div>
             </div>
@@ -458,28 +473,29 @@
 
           <div class="card-content">
             <div class="text-content">
-              <h2 class="project-title">STATISTICAL ANALYSIS</h2>
-              <h3 class="project-category">CATEGORY : DATA ANALYSIS</h3>
-              <p class="project-description">
-                Cleaned and analyzed accident severity data (2006-2019) using PostgreSQL. Queried the database to
-                extract insights, create graphs, and interpret trends. Worked in collaboration with <a
-                  href="file:///D:/ecole/document%20école/R2/portfolio/vrai-poj/data.html" class="lien">Simon</a>.
+              <h2 class="project-title">ANALYSE STATISTIQUE</h2>
+              <h3 class="project-category">CATÉGORIE : ANALYSE DE DONNÉES</h3>
+             <p class="project-description">
+                Nettoyage complet et analyse de données sur la gravité des accidents (2006-2019) avec PostgreSQL.
+                 La structure de la base de données ayant été entièrement refaite, 
+                 un travail important de nettoyage et de transition des données a été nécessaire.
+                  Pour mener à bien cette restructuration, nous avons exploré la documentation officielle afin de trouver et d'exploiter les fonctions spécifiques de PostgreSQL. Des requêtes complexes ont ensuite permis d'extraire des indicateurs clés, de générer des graphiques et d'interpréter les tendances. Travail réalisé en collaboration avec <a href="file:///D:/ecole/document%20école/R2/portfolio/vrai-poj/data.html" class="lien">Simon</a>.
               </p>
             </div>
 
             <div class="tags-layout">
               <div class="tags-row">
                 <div class="tags-list">
-                  <span class="tag tag-tech">SQL</span>
-                  <span class="tag tag-tech">Writing Analyses</span>
-                  <span class="tag tag-tech">Finding Trends</span>
+                  <span class="tag tag-tech">PostgreSQL & Doc</span>
+                  <span class="tag tag-tech">Transition de Données</span>
+                  <span class="tag tag-tech">Nettoyage / SQL</span>
                 </div>
               </div>
 
               <div class="tags-row">
                 <div class="tags-list">
-                  <span class="tag tag-soft">Concise</span>
-                  <span class="tag tag-soft">Resourceful (Docs)</span>
+                  <span class="tag tag-soft">Concis</span>
+                  <span class="tag tag-soft">Autodidacte</span>
                 </div>
               </div>
             </div>
@@ -487,7 +503,7 @@
         </div>
 
       </div>
-      <div class="sec-title">teamwork</div>
+      <div class="sec-title">Travail d'équipe</div>
       <div class="slide">
         <div class="card futuristic-card">
           <div class="noise detailed-grain"></div>
@@ -498,28 +514,29 @@
           </div>
           <div class="card-content">
             <div class="text-content">
-              <h2 class="project-title">Blender talk</h2>
-              <h3 class="project-category">CATEGORY : 3D & COMMUNICATION</h3>
+             <h2 class="project-title">Présentation Blender</h2>
+              <h3 class="project-category">CATÉGORIE : 3D & COMMUNICATION</h3>
               <p class="project-description">
-                Delivered an English presentation on Blender, my favorite 3D software. 
-                As an amateur 3D artist, I explained its capabilities, funding model, user base, and overall value. 
-                The goal was to master the PechaKucha presentation technique
-(20 slides, 20 seconds per slide).
+                Réalisation d'une présentation en anglais sur Blender, 
+                mon logiciel 3D préféré. En tant qu'artiste 3D amateur, 
+                j'ai détaillé ses fonctionnalités, son modèle de financement,
+                 sa communauté d'utilisateurs et son impact global. 
+                 L'objectif principal était de maîtriser la technique de présentation PechaKucha (20 diapositives, 20 secondes par diapositive).
               </p>
             </div>
 
             <div class="tags-layout">
               <div class="tags-row">
                 <div class="tags-list">
-                  <span class="tag tag-tech">Blender</span>
-                  <span class="tag tag-tech">Public Speaking</span>
+                 <span class="tag tag-tech">Blender</span>
+                  <span class="tag tag-tech">Prise de parole</span>
                 </div>
               </div>
 
               <div class="tags-row">
                 <div class="tags-list">
-                  <span class="tag tag-soft">Convincing</span>
-                  <span class="tag tag-soft">Adaptive</span>
+                 <span class="tag tag-soft">Convaincant</span>
+                  <span class="tag tag-soft">Adaptable</span>
                 </div>
               </div>
             </div>
@@ -534,27 +551,31 @@
           </div>
           <div class="card-content">
             <div class="text-content">
-              <h2 class="project-title">Anti-cheat talk</h2>
-              <h3 class="project-category">CATEGORY : GROUP PROJECT </h3>
+             <h2 class="project-title">Les systèmes anti-triche</h2>
+              <h3 class="project-category">CATÉGORIE : PROJET DE GROUPE</h3>
               <p class="project-description">
-                In a group of three, we gave a presentation on anti-cheat systems based on our research and technical knowledge. We had to make the topic detailed enough to engage the class while keeping it clear and accessible for the communication professor. Thanks to animations and effective explanations, I believe we delivered an engaging and enjoyable presentation.
-                </p>
+                En groupe de trois, 
+                nous avons réalisé une présentation sur les systèmes anti-triche en nous appuyant sur nos recherches et nos connaissances techniques.
+                 L'enjeu était de vulgariser un sujet complexe pour le rendre accessible à notre professeur de communication tout en y apportant 
+                 assez de détails techniques pour intéresser la classe. Grâce à des animations dynamiques et des explications claires, 
+                 nous avons proposé un exposé captivant.
+              </p>
             </div>
 
-             <div class="tags-layout">
+            <div class="tags-layout">
               <div class="tags-row">
                 <div class="tags-list">
                   <span class="tag tag-tech">GitHub</span>
-                  <span class="tag tag-tech">Report writing</span>
-                    <span class="tag tag-tech">Team coordination</span>
+                  <span class="tag tag-tech">Rédaction de rapport</span>
+                  <span class="tag tag-tech">Coordination d'équipe</span>
                 </div>
               </div>
 
               <div class="tags-row">
                 <div class="tags-list">
-                  <span class="tag tag-soft">Coordinated</span>
-                  <span class="tag tag-soft">Precise</span>
-                   <span class="tag tag-soft">Composed</span>
+                 <span class="tag tag-soft">Coordonné</span>
+                  <span class="tag tag-soft">Précis</span>
+                  <span class="tag tag-soft">Posé</span>
                 </div>
               </div>
             </div>
@@ -565,32 +586,35 @@
 
 
           <div class="project-image">
-            <img  src="assets/img/cards/zenior-logo.png"  alt="">
+            <img src="assets/img/cards/zenior-logo.png" alt="">
           </div>
           <div class="card-content">
             <div class="text-content">
               <h2 class="project-title">Zenior</h2>
-              <h3 class="project-category">CATEGORY :  GROUP PROJECT </h3>
+              <h3 class="project-category">CATÉGORIE : PROJET DE GROUPE</h3>
               <p class="project-description">
-                To support the growing number of caregivers managing elderly home care in France, we developed a centralized web app connecting families, healthcare professionals, and seniors. 
-                The platform streamlines daily coordination by integrating a dedicated messaging system, a shared task calendar, an automated medical equipment tracker, and a comprehensive patient information dashboard into a single, accessible interface.
+                Afin de soutenir le nombre croissant d'aidants gérant le maintien à domicile des personnes âgées en France,
+                 nous avons développé une application web centralisée reliant les familles, 
+                 les professionnels de santé et les seniors. La plateforme simplifie la coordination quotidienne en intégrant une messagerie dédiée,
+                  un calendrier de tâches partagé, un suivi automatisé du matériel médical et un tableau de bord complet des informations du patient au sein 
+                  d'une interface unique et accessible.
               </p>
             </div>
 
             <div class="tags-layout">
               <div class="tags-row">
                 <div class="tags-list">
-                  <span class="tag tag-tech">GitHub</span>
+               <span class="tag tag-tech">GitHub</span>
                   <span class="tag tag-tech">Symfony</span>
-                  <span class="tag tag-tech">Crisis Management</span>
+                  <span class="tag tag-tech">Gestion de crise</span>
                 </div>
               </div>
 
               <div class="tags-row">
                 <div class="tags-list">
-                  <span class="tag tag-soft">Coordinated</span>
-                  <span class="tag tag-soft">Precise</span>
-                   <span class="tag tag-soft">Composed</span>
+                 <span class="tag tag-soft">Coordonné</span>
+                  <span class="tag tag-soft">Précis</span>
+                  <span class="tag tag-soft">Posé</span>
                 </div>
               </div>
             </div>
@@ -647,7 +671,7 @@
           </div>
         </div>
 
-  
+
         <div class="galery-element" data-index="3">
           <a href="https://www.youtube.com/watch?v=8wOUe32Pt-E">
             <img src="assets/img/gallery/dithering-acerola.jpg" alt="">
@@ -665,7 +689,7 @@
             <div class="panel-title">3Blue1Brown</div>
           </div>
         </div>
-        
+
       </div><!-- /.gallery-scroll-container -->
     </div>
 
@@ -677,7 +701,7 @@
        ═══════════════════════════════════════ -->
   <section id="process">
 
-   
+
     <div class="sec-title" style="margin-bottom: 3rem">my Journey</div>
 
     <div class="timeline reveal">
@@ -686,11 +710,12 @@
       <div class="tl-item">
         <div class="tl-dot v"></div>
         <div class="tl-content">
-          <div class="tl-phase">01 &middot; first step</div>
-          <div class="tl-title">High School Diploma – Lycée Polyvalent Astier</div>
-          <p class="tl-desc">While it initially felt like exploring abstract concepts, my high school years laid the crucial mathematical foundation—vectors,
-             differential equations—that anchors my current work. During this time, discovering technical content creators sparked my passion and cemented 
-             my goal to pursue graphics programming.</p>
+          <div class="tl-phase">01 &middot; premiére étape</div>
+          <div class="tl-title">Baccalauréat Général – Lycée Polyvalent Astier</div>
+          <p class="tl-desc">
+            Bien que cela ressemblait initialement à l'exploration de concepts abstraits, 
+            mes années de lycée ont posé les fondations mathématiques cruciales — vecteurs, équations différentielles — qui ancrent mon travail actuel (moteur de rendu 3d). Durant cette période, 
+            la découverte de créateurs de contenu technique a éveillé ma passion et consolidé mon objectif de poursuivre dans la programmation graphique.</p>
         </div>
       </div>
 
@@ -698,12 +723,14 @@
       <div class="tl-item">
         <div class="tl-dot b"></div>
         <div class="tl-content">
-          <div class="tl-phase">02 &middot; the discovery</div>
-          <div class="tl-title">B.U.T. in Computer Science (Years 1 & 2)</div>
-          <p class="tl-desc">"These two years were intensely challenging but deeply rewarding. Being surrounded by 
-            inspiring peers pushed me to develop autonomy, resilience, and adaptability. This period clarified my broader ambition:
-             to use graphics programming as a gateway to master multiple disciplines—bridging software, hardware, and physical sciences—to become a 
-             highly versatile technical professional.
+          <div class="tl-phase">02 &middot; la découverte</div>
+          <div class="tl-title">B.U.T. Informatique (1ère et 2ème années)</div>
+          <p class="tl-desc">"These two years were intensely challenging but deeply rewarding. Being surrounded by
+           Ces deux années ont été intensément stimulantes mais profondément gratifiantes. 
+           Être entouré de pairs inspirants m'a poussé à développer mon autonomie, 
+           ma résilience et mon adaptabilité. Cette période a clarifié mon ambition globale : 
+           utiliser la programmation graphique comme une passerelle pour maîtriser plusieurs disciplines — 
+           reliant le logiciel, le matériel et les sciences physiques — afin de devenir un professionnel technique très polyvalent.
           </p>
         </div>
       </div>
@@ -712,9 +739,11 @@
       <div class="tl-item">
         <div class="tl-dot c"></div>
         <div class="tl-content">
-          <div class="tl-phase">03 &middot; now</div>
-          <div class="tl-title">B.U.T. in Computer Science (3rd Year) – Le Puy</div>
-          <p class="tl-desc">Currently completing my third year, I am organizing my schedule to balance academic requirements with deep dives into personal side projects. Most importantly, I am actively seeking a work-study position (alternance) to apply my skills in a real-world professional environment.
+          <div class="tl-phase">03 &middot; maintenant</div>
+          <div class="tl-title">B.U.T. Informatique (3ème année) – Le Puy-en-Velay</div>
+          <p class="tl-desc">Actuellement en train de terminer ma troisième année,
+             j'organise mon emploi du temps pour concilier les exigences académiques avec une implication approfondie dans mes projets personnels.
+              Plus important encore, je suis activement à la recherche d'une alternance pour appliquer mes compétences dans un environnement professionnel réel.
           </p>
         </div>
       </div>
@@ -723,11 +752,12 @@
       <div class="tl-item">
         <div class="tl-dot g"></div>
         <div class="tl-content">
-          <div class="tl-phase">04 &middot; my future </div>
-          <div class="tl-title">Engineering Degree ? master : self-learning ;</div>
-          <p class="tl-desc">( it's not that hard to decypher )Txqz"fkd zo:xqlop ùfh: Xz:olùx "xp zlkcfoj:/ jv mxppflk clo doxm"fzp moldoxjjfkd. T":q"
-            :o q"olrd" x Jxpq:o'p /:do::, xk :kdfk::ofkd pz"llù, lo jv lkdlfkd p:ùc-ù:xokfkd, F xj fkzo:/fyùv :uzfq:/ ql crùùv pm:zfxùfw:
-             fk ùlt-ù:s:ù xoz"fq:zqro: xk/ o:k/:ofkd.
+          <div class="tl-phase">04 &middot; mon avenir </div>
+          <div class="tl-title">École d'ingénieurs ? master : auto-formation ;</div>
+          <p class="tl-desc">( ce n'est pas si difficile à déchiffrer )( Z: k':pq mxp pf /fccfzfù: à /éz"fcco:o ) Fkpmfoé mxo ù:p oéxùfqép /r jéqf:o 
+            /: moldoxjj:ro doxm"fnr:, g: o:pq: zlksxfkzr nr: ùx sxù:ro /'rk molcfù oépf/: xsxkq qlrq /xkp p:p molg:qp m:oplkk:ùp :q px zroflpfqé q:z"kfnr:, 
+            xr-/:ùà /r pfjmù: /fmùôj:. Nr'fù p'xdfpp: /'rk Jxpq:o, /'rk zroprp /'fkdékf:ro lr /'rk: mlroprfq: :k xrql/f/xzq:, g'xf "âq: /'xylo/:o z:qq: molz"xfk
+            : éqxm: mlro j: pmézfxùfp:o mù:fk:j:kq :q j: zlkpxzo:o :uzùrpfs:j:kq xru /fpzfmùfk:p nrf j: mxppflkk:kq.
           </p>
         </div>
       </div>
@@ -735,43 +765,43 @@
     </div><!-- /.timeline -->
   </section>
 
-<!-- ═══════════════════════════════════════
+  <!-- ═══════════════════════════════════════
      SECTION CV (Permanente & Responsive)
      ═══════════════════════════════════════ -->
-<section id="cv-section" style="display: flex; justify-content: center; align-items: center; padding: 6rem 1.5rem;">
-  
-  <div class="futuristic-card cv-card-permanent reveal" id="cv">
-    <div class="noise detailed-grain"></div>
-    
-    <div class="card-content" style="position: relative; z-index: 2;">
-      <div class="cv-header">
-        <h2 class="project-title">Download CV</h2>
-      </div>
-      
-      <div class="cv-links">
-        <a href="assets/cv/alternance-prog-graphiquebut3.pdf" download class="cv-item">
-          <span class="tag tag-tech cv-tag">
-            Graphics / Low-Level
-            <img src="assets/img/logo/download_logo.svg" alt="">
-          </span>
-        </a>
-        
-        <a href="assets/cv/alternance-but3-web-it.pdf" download class="cv-item">
-          <span class="tag tag-tech cv-tag">
-            Web / Fullstack <img src="assets/img/logo/download_logo.svg" alt="">
-          </span>
-          
-        </a>
-        
-        <a href="assets/cv/Copie de alternance-but3-web-sys-admin.pdf" download class="cv-item">
-          <span class="tag tag-tech cv-tag">
-            Data / SysAdmin<img src="assets/img/logo/download_logo.svg" alt=""> 
-          </span>
-        </a>
+  <section id="cv-section" style="display: flex; justify-content: center; align-items: center; padding: 6rem 1.5rem;">
+
+    <div class="futuristic-card cv-card-permanent reveal" id="cv">
+      <div class="noise detailed-grain"></div>
+
+      <div class="card-content" style="position: relative; z-index: 2;">
+        <div class="cv-header">
+          <h2 class="project-title">Télécharger le CV</h2>
+        </div>
+
+        <div class="cv-links">
+          <a href="assets/cv/alternance-prog-graphiquebut3.pdf" download class="cv-item">
+            <span class="tag tag-tech cv-tag">
+              Prog Graphique / Bas Niveau
+              <img src="assets/img/logo/download_logo.svg" alt="">
+            </span>
+          </a>
+
+          <a href="assets/cv/alternance-but3-web-it.pdf" download class="cv-item">
+            <span class="tag tag-tech cv-tag">
+              Web / Fullstack <img src="assets/img/logo/download_logo.svg" alt="">
+            </span>
+
+          </a>
+
+          <a href="assets/cv/Copie de alternance-but3-web-sys-admin.pdf" download class="cv-item">
+            <span class="tag tag-tech cv-tag">
+              Data / SysAdmin<img src="assets/img/logo/download_logo.svg" alt="">
+            </span>
+          </a>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
   <!-- ═══════════════════════════════════════
        FOOTER
 

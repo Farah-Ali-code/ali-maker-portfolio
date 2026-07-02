@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grille 6x5 et Rayon Hors-Écran</title>
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #0a0a0a; 
+            overflow: hidden;
+            position: relative;
+            
+            /* Grille fine orange : 6 colonnes de large, 5 lignes de haut */
+            background-image: 
+                linear-gradient(to right, rgba(255, 140, 0, 0.18) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 140, 0, 0.18) 1px, transparent 1px);
+            background-size: 
+                calc(100vw / 6) calc(100vh / 5), 
+                calc(100vw / 6) calc(100vh / 5);
+            background-repeat: repeat;
+        }
+
+        /* Couche du rayon lumineux */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+
+            /* Origine placée à -10% -10% (hors de l'écran en haut à gauche) */
+            background-image: conic-gradient(from 90deg at -20% -20%, 
+                transparent 18deg, 
+                rgba(255, 145, 0, 0.15) 28deg, 
+                transparent 40deg
+            );
+
+            /* Le masque commence aussi hors-écran pour s'accorder parfaitement au rayon */
+            -webkit-mask-image: radial-gradient(circle at -10% -10%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0) 65%);
+            mask-image: radial-gradient(circle at 20% -20%, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0) 100%);
+        }
+    </style>
+</head>
+<body>
+</body>
+</html>
